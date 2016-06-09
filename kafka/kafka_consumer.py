@@ -9,22 +9,22 @@ for msg in consumer:
 	data=msg.value
 	d=data.split(",")
 	data={}
-	data['measurement']='fitbit_data'
-	tags={}
-	tags['user_id']=d[0]
-	tags['bmi']=d[1]
-	tags['fat']=d[2]
-	tags['steps']=d[3]
-	tags['floors']=d[4]
-	tags['calories']=d[5]
-	data['tags']=tags
 	fields={}
-	fields['speed']=d[7]
-	fields['date']=d[9]
-	fields['calories_rate']=d[6]
-	fields['heart_rate']=d[8]
-	fields['total_time']=d[10]
+	fields['speed']=int(d[7])
+	fields['date']=d[10][:-1]
+	fields['calories_rate']=int(d[6])
+	fields['heart_rate']=int(d[8])
+	fields['total_time']=int(d[9])
 	data['fields']=fields
+	tags={}
+	tags['user_id']=int(d[0][1:])
+	tags['bmi']=int(d[1])
+	tags['fat']=int(d[2])
+	tags['steps']=int(d[3])
+	tags['floors']=int(d[4])
+	tags['calories']=int(d[5])
+	data['tags']=tags
+	data['measurement']='fitbit_data'
 
 	print(data)
 
