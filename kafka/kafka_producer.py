@@ -26,7 +26,7 @@ def generate_data():
 	bmi2=random.randrange(18,35)
 
 	fat_range1=random.randrange(15,25)
-	fat_range2=random.ramdrange(15,25)
+	fat_range2=random.randrange(15,25)
 
 	steps1=random.randrange(1000,10000)
 	steps2=random.randrange(1000,10000)
