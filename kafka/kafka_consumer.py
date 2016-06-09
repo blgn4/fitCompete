@@ -27,9 +27,9 @@ for msg in consumer:
 	
 	data['fields']=fields
 	data['tags']=tags
-	data['measurement']='fitbit_data' '''
+	data['measurement']='fitbit_data' 
 	data1=[("measurement","fitbit_data") , ("tags",tags),("fields",fields)]
-	print(json.dumps(OrderedDict(data1)))
+	print(json.dumps(OrderedDict(data1)))'''
 
 	data1='[{"measurement":"fitbit_data" , "tags":{"user_id":'+int(d[0][1:])+',"bmi":'+int(d[1])+',"fat":'+int(d[2])+',"steps":'+int(d[3])+',"floors":'+int(d[4])+',"calories":'+int(d[5])+'},"fields":{"speed":'+int(d[7])+',"calories_rate":'+int(d[6])+',"heart_rate":'+int(d[6])+',"total_time":'+int(d[9])+'"date":'+d[10][:-1] +'}}]'
 	
