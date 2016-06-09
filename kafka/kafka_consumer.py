@@ -6,6 +6,7 @@ consumer = KafkaConsumer(bootstrap_servers='localhost:9092')
 consumer.subscribe(['influxdb'])
 
 for msg in consumer:
+	msg=json.load(msg)
 	user_id=msg['user_id']
 	bmi=msg['bmi']
 	fat=msg['fat']
