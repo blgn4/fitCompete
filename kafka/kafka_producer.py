@@ -49,35 +49,11 @@ def generate_data():
 		cal_out_rate1=random.randrange(6,10)
 		cal_out_rate2=random.randrange(6,10)
 
-		d1={}
-		d1['user_id']=us1
-		d1['bmi']=bmi1
-		d1['fat']=fat_range1
-		d1['steps']=steps1
-		d1['floors']=floors1
-		d1['calories']=cal_in1
-		d1['calories_rate']=cal_out_rate1
-		d1['speed']=speed1
-		d1['heart_rate']=hr1
-		d1['total_workout_time']=tot_time
-		d1['date']=date
-		json_data1=json.dumps(d1)
-		send_data('influxdb',json_data1)
+		data1=us1+","+bmi1+","+fat_range1+","+steps1+","+floors1+","+cal_in1+","+cal_out_rate1+","+speed1+","+hr1+","+tot_time+","+date
+		send_data('influxdb2',data1)
 
-		d2={}
-		d2['user_id']=us2
-		d2['bmi']=bmi2
-		d2['fat']=fat_range2
-		d2['steps']=steps2
-		d2['floors']=floors2
-		d2['calories']=cal_in2
-		d2['calories_rate']=cal_out_rate2
-		d2['speed']=speed2
-		d2['heart_rate']=hr2
-		d2['total_workout_time']=tot_time
-		d2['date']=date
-		json_data2=json.dumps(d2)
-		send_data('influxdb',json_data2)
+		data2=us2+","+bmi2+","+fat_range2+","+steps2+","+floors2+","+cal_in2+","+cal_out_rate2+","+speed2+","+hr2+","+tot_time+","+date
+		send_data('influxdb2',data2)
 
 		diff=int(round(time.time()*1000))-start_time
 
