@@ -15,7 +15,7 @@ for msg in consumer:
 	fields['calories_rate']=int(d[6])
 	fields['heart_rate']=int(d[8])
 	fields['total_time']=int(d[9])
-	data['fields']=fields
+	
 	tags={}
 	tags['user_id']=int(d[0][1:])
 	tags['bmi']=int(d[1])
@@ -23,7 +23,9 @@ for msg in consumer:
 	tags['steps']=int(d[3])
 	tags['floors']=int(d[4])
 	tags['calories']=int(d[5])
-	'''data['tags']=tags
+	'''
+	data['fields']=fields
+	data['tags']=tags
 	data['measurement']='fitbit_data' '''
 	data1=[("measurement","fitbit_data") , ("tags",tags),("fields",fields)]
 	print(json.dumps(OrderedDict(data1)))
