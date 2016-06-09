@@ -20,19 +20,16 @@ tags['fat']=d[2]
 tags['steps']=d[3]
 tags['floors']=d[4]
 tags['calories']=d[5]
-json_tags=json.dumps(tags)
-data['tags']=json_tags
+data['tags']=tags
 fields={}
 fields['speed']=d[7]
 fields['date']=date[9]
 fields['calories_rate']=d[6]
 fields['heart_rate']=d[8]
 fields['total_time']=d[10]
-json_fields=json.dump(fields)
-data['fields']=json_fields
-json_data=json.dump(data)
+data['fields']=fields
 
-print(json_data)
+print(data)
 
 '''
 client=InfluxDBClient('localhost',8086,'root','root','niha_db_ex')
