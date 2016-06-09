@@ -1,3 +1,4 @@
+import json
 from kafka import KafkaConsumer
 from influxdb import InfluxDBClient
 
@@ -18,7 +19,28 @@ for msg in consumer:
 	date=msg['date']
 
 
-json_data={"measurement":"fitbit_data","tags":{"user_id":user_id,"bmi":bmi,"fat":fat,"steps":steps,"floors":floors,"calories":calories},"fields":{"speed":speed,"date"=date,"calories_rate":calories_rate,"heart_rate":heart_rate,"total_time":tot_time}}
+
+data={}
+data['measurement']='fitbit_data'
+tags={}
+tags['user_id']=user_id
+tags['bmi']=bmi
+tags['fat']=fat
+tags['steps']=steps
+tags['floors']=floors
+tags['calories']=calories
+json_tags=json.dumps(tags)
+data['tags']=json_tags
+fields={}
+fields['speed']=speed
+fields['date']=date
+fields['calories_rate']=calories_rate
+fields['heart_rate']=heart_rate
+fields['total_time']=tot_time
+json_fields=json.dump(fields)
+data['fields']=json_fields
+json_data=json.dump(data)
+
 
 client=InfluxDBClient('localhost',8086,'root','root','niha_db_ex')
 client.write_points(json_data)
