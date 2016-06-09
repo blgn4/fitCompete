@@ -26,7 +26,7 @@ def generate_data():
 	bmi2=random.randrange(18,35)
 
 	fat_range1=random.randrange(15,25)
-	fat_range2=random.ramdrange(15,25)
+	fat_range2=random.randrange(15,25)
 
 	steps1=random.randrange(1000,10000)
 	steps2=random.randrange(1000,10000)
@@ -77,7 +77,7 @@ def generate_data():
 		d2['total_workout_time']=tot_time
 		d2['date']=date
 		json_data2=json.dumps(d2)
-		send_data('influxdb',json_data2)
+		send_data('influxdb1',json_data2)
 
 		diff=int(round(time.time()*1000))-start_time
 

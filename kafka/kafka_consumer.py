@@ -3,13 +3,14 @@ from kafka import KafkaConsumer
 from influxdb import InfluxDBClient
 
 consumer = KafkaConsumer(bootstrap_servers='localhost:9092')
-consumer.subscribe(['influxdb'])
+consumer.subscribe(['influxdb1'])
 
 for msg in consumer:
-	dat=open(msg)
-	msg=json.load(dat)
-	user_id=msg['user_id']
-	bmi=msg['bmi']
+	msg1=msg.value
+	print msg1
+	user_id=msg1[1]
+	'''
+	bmi=msg1['bmi']
 	fat=msg['fat']
 	steps=msg['steps']
 	floors=msg['floors']
@@ -19,6 +20,7 @@ for msg in consumer:
 	heart_rate=msg['heart_rate']
 	tot_time=msg['total_workout_time']
 	date=msg['date']
+	print usr_id
 
 
 
@@ -46,6 +48,6 @@ json_data=json.dump(data)
 
 client=InfluxDBClient('localhost',8086,'root','root','niha_db_ex')
 client.write_points(json_data)
-
+'''
 
 
