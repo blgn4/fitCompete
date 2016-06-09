@@ -20,7 +20,7 @@ for msg in consumer:
 	data['tags']=tags
 	fields={}
 	fields['speed']=d[7]
-	fields['date']=date[9]
+	fields['date']=d[9]
 	fields['calories_rate']=d[6]
 	fields['heart_rate']=d[8]
 	fields['total_time']=d[10]
