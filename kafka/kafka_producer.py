@@ -49,10 +49,10 @@ def generate_data():
 		cal_out_rate1=random.randrange(6,10)
 		cal_out_rate2=random.randrange(6,10)
 
-		data1=us1+","+bmi1+","+fat_range1+","+steps1+","+floors1+","+cal_in1+","+cal_out_rate1+","+speed1+","+hr1+","+tot_time+","+date
+		data1=str(us1)+","+str(bmi1)+","+str(fat_range1)+","+str(steps1)+","+str(floors1)+","+str(cal_in1)+","+str(cal_out_rate1)+","+str(speed1)+","+str(hr1)+","+str(tot_time)+","+date
 		send_data('influxdb2',data1)
 
-		data2=us2+","+bmi2+","+fat_range2+","+steps2+","+floors2+","+cal_in2+","+cal_out_rate2+","+speed2+","+hr2+","+tot_time+","+date
+		data2=str(us2)+","+str(bmi2)+","+str(fat_range2)+","+str(steps2)+","+str(floors2)+","+str(cal_in2)+","+str(cal_out_rate2)+","+str(speed2)+","+str(hr2)+","+str(tot_time)+","+date
 		send_data('influxdb2',data2)
 
 		diff=int(round(time.time()*1000))-start_time
