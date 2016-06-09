@@ -32,7 +32,7 @@ json_fields=json.dump(fields)
 data['fields']=json_fields
 json_data=json.dump(data)
 
-print json_data
+print(json_data)
 
 '''
 client=InfluxDBClient('localhost',8086,'root','root','niha_db_ex')
