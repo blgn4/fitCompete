@@ -28,9 +28,9 @@ for msg in consumer:
 
 	print(data)
 
-'''
+
 client=InfluxDBClient('localhost',8086,'root','root','niha_db_ex')
 client.write_points(json_data)
-'''
+
 
 
