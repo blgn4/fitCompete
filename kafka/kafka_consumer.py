@@ -27,10 +27,8 @@ for msg in consumer:
 	data['measurement']='fitbit_data'
 
 	print(data)
-
-
-client=InfluxDBClient('localhost',8086,'root','root','niha_db_ex')
-client.write_points(json_data)
+	client=InfluxDBClient('localhost',8086,'root','root','niha_db_ex')
+	client.write_points(data)
 
 
 
