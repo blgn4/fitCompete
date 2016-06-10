@@ -4,7 +4,7 @@ import time
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
 today_date="competetors"+time.strftime("%d-%m-%Y")
 uid=100000
-for i in (1,100):
+for i in range(1,100):
 	u1=uid+i
 	u2=2*uid+i
 	print(str(u1))
