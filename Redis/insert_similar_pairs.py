@@ -7,5 +7,6 @@ uid=100000
 for i in (1,100):
 	u1=uid+i
 	u2=2*uid+i
+	print(str(u1))
 	comp=str(u1)+","+str(u2)
 	r.lpush(today_date,comp)
