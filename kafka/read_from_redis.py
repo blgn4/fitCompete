@@ -6,12 +6,12 @@ import random
 import threading
 from time import sleep
 
-producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers='ec2-52-38-54-51.us-west-2.compute.amazonaws.com:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
 def send_data(topic,data):
 	producer.send(topic,data)
 
-'''
+
 class userThreads (threading.Thread):
     def __init__(self,counter, user_1,user_2):
         threading.Thread.__init__(self)
@@ -32,18 +32,16 @@ def obtain_users_from_redis():
 	while r.llen(key)!=0:
 		user_pair=r.lpop(key)
 		user=user_pair.split(',')
-		#thread1=userThreads(count,user[0],user[1])
-		#thread1.start()
+		thread1=userThreads(count,user[0],user[1])
+		thread1.start()
 		generate_data(user[0],user[1])
 		count=count+1
 		
-'''		
+		
 		
 
-def generate_data():
+def generate_data(us1,us2):
 
-	us1=100
-	us2=101
 
 	start_time=int(round(time.time()*1000))
 	diff=0
@@ -82,16 +80,16 @@ def generate_data():
 
 		data1=str(us1)+","+str(bmi1)+","+str(fat_range1)+","+str(steps1)+","+str(floors1)+","+str(cal_in1)+","+str(cal_out_rate1)+","+str(speed1)+","+str(hr1)+","+str(tot_time)+","+date
 		print data1
-		send_data('influx3',data1)
+		send_data('topic1',data1)
 
 		data2=str(us2)+","+str(bmi2)+","+str(fat_range2)+","+str(steps2)+","+str(floors2)+","+str(cal_in2)+","+str(cal_out_rate2)+","+str(speed2)+","+str(hr2)+","+str(tot_time)+","+date
-		send_data('influx3',data2)
+		send_data('topic1',data2)
 
 		diff=int(round(time.time()*1000))-start_time
 
 
 
-generate_data()
+obtain_users_from_redis()
 
 
 
