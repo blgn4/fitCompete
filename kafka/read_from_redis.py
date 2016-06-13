@@ -8,6 +8,9 @@ from time import sleep
 
 producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
+def send_data(topic,data):
+	producer.send(topic,data)
+
 '''
 class userThreads (threading.Thread):
     def __init__(self,counter, user_1,user_2):
@@ -66,7 +69,6 @@ def generate_data(us1,us2):
 	
 
 	while diff < tot_time:
-		sleep(1)
 		hr1=random.randrange(60,200,1)
 		hr2=random.randrange(60,200,1)
 
@@ -85,8 +87,7 @@ def generate_data(us1,us2):
 
 		diff=int(round(time.time()*1000))-start_time
 
-def send_data(topic,data):
-	producer.send(topic,data)
+
 
 generate_data(100,101)
 
