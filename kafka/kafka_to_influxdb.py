@@ -3,7 +3,7 @@ from kafka import KafkaConsumer
 from influxdb import InfluxDBClient
 from collections import OrderedDict
 
-consumer = KafkaConsumer('influx5',bootstrap_servers='localhost:9092')
+consumer = KafkaConsumer('influx1',bootstrap_servers='localhost:9092')
 print 'Hello'
 print consumer
 
