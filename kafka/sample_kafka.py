@@ -3,7 +3,7 @@ import json
 import random
 import time
 
-producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers='ec2-52-38-54-51.us-west-2.compute.amazonaws.com:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
 
 def send_data(topic,data):
@@ -49,11 +49,11 @@ def generate_data():
                 cal_out_rate1=random.randrange(6,10)
                 cal_out_rate2=random.randrange(6,10)
                 data1=str(us1)+","+str(bmi1)+","+str(fat_range1)+","+str(steps1)+","+str(floors1)+","+str(cal_in1)+","+str(cal_out_rate1)+","+str(speed1)+","+str(hr1)+","+str(tot_time)+","+date
-                send_data('my_topic',data1)
-
+                send_data('my_topic1',data1)
+                print data1
                 data2=str(us2)+","+str(bmi2)+","+str(fat_range2)+","+str(steps2)+","+str(floors2)+","+str(cal_in2)+","+str(cal_out_rate2)+","+str(speed2)+","+str(hr2)+","+str(tot_time)+","+date
-                send_data('my_topic',data2)
-
+                send_data('my_topic1',data2)
+                print data2
                 diff=int(round(time.time()*1000))-start_time
 
 generate_data()
