@@ -4,8 +4,11 @@ from influxdb import InfluxDBClient
 from collections import OrderedDict
 
 consumer = KafkaConsumer('influx5',bootstrap_servers='localhost:9092')
+print 'Hello'
+print consumer
 
 client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha') 
+print client
 
 for msg in consumer:
 	print msg
