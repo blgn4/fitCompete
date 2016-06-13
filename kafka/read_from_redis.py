@@ -36,6 +36,7 @@ def obtain_users_from_redis():
 		thread1.start()
 		generate_data(user[0],user[1])
 		count=count+1
+		sleep(900)
 		
 		
 		
