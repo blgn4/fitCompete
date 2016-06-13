@@ -4,7 +4,7 @@ from influxdb import InfluxDBClient
 from collections import OrderedDict
 
 consumer = KafkaConsumer(bootstrap_servers='localhost:9092')
-consumer.subscribe(['influx'])
+consumer.subscribe(['influx5'])
 client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha') 
 
 for msg in consumer:
