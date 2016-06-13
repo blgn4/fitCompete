@@ -28,9 +28,7 @@ def obtain_users_from_redis():
 	count=1
 	while r.llen(key)!=0:
 		user_pair=r.lpop(key)
-		print(user_pair)
 		user=user_pair.split(',')
-		sleep(1)
 		#thread1=userThreads(count,user[0],user[1])
 		#thread1.start()
 		generate_data(user[0],user[1])
@@ -39,6 +37,8 @@ def obtain_users_from_redis():
 		
 
 def generate_data(us1,us2):
+
+	print us1
 
 	start_time=int(round(time.time()*1000))
 	diff=0
