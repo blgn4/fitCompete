@@ -8,7 +8,7 @@ from time import sleep
 
 producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
-
+'''
 class userThreads (threading.Thread):
     def __init__(self,counter, user_1,user_2):
         threading.Thread.__init__(self)
@@ -20,7 +20,7 @@ class userThreads (threading.Thread):
         print "Starting " + self.name
         generate_data(self.user1, self.user2)
         print "Exiting " + self.name
-
+'''
 def obtain_users_from_redis():
 	print('hello')
 	r = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
@@ -31,8 +31,9 @@ def obtain_users_from_redis():
 		print(user_pair)
 		user=user_pair.split(',')
 		sleep(1)
-		thread1=userThreads(count,user[0],user[1])
-		thread1.start()
+		#thread1=userThreads(count,user[0],user[1])
+		#thread1.start()
+		generate_data(user[0],user[1])
 		count=count+1
 		
 		
@@ -87,7 +88,7 @@ def generate_data(us1,us2):
 def send_data(topic,data):
 	producer.send(topic,data)
 
-obtain_users_from_redis()
+generate_data()
 
 
 
