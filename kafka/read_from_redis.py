@@ -26,8 +26,8 @@ def obtain_users_from_redis():
 		user_pair=r.lpop(key)
 		user=user_pair.split(',')
 		sleep(1)
-		thread=userThreads(count,user[0],user[1])
-		thread.start()
+		thread1=userThreads(count,user[0],user[1])
+		thread1.start()
 		count=count+1
 		
 		
