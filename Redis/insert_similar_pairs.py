@@ -4,6 +4,7 @@ import time
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
 key="competetors"
 uid=1000000
+i=1
 while i<=100000:
 	u1=uid+i
 	i=i+1
