@@ -88,7 +88,7 @@ def generate_data(us1,us2):
 def send_data(topic,data):
 	producer.send(topic,data)
 
-obtain_users_from_redis()
+generate_data(100,101)
 
 
 
