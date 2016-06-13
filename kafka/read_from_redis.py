@@ -5,7 +5,7 @@ from kafka import KafkaProducer
 import random
 import threading
 
-producer = KafkaProducer(bootstrap_servers='ec2-52-40-251-139.us-west-2.compute.amazonaws.com:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
 
 class userThreads (threading.Thread):
@@ -19,7 +19,7 @@ class userThreads (threading.Thread):
         print "Exiting " + self.name
 
 def obtain_users_from_redis():
-	r = redis.StrictRedis(host='localhost', port=6379, db=0)
+	r = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
 	key="competetors"
 	count=1
 	while r.llen(key)!=0:
