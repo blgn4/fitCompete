@@ -19,7 +19,7 @@ class userThreads (threading.Thread):
         print "Exiting " + self.name
 
 def obtain_users_from_redis():
-	print hello
+	print('hello')
 	r = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
 	key="competetors"
 	count=1
