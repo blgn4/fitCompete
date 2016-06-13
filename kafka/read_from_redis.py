@@ -14,11 +14,11 @@ class userThreads (threading.Thread):
         threading.Thread.__init__(self)
         self.threadID = counter
         self.name = str(user_1)+"-->"+str(user_2)
-        self.user1=user1
-        self.user2=user2
+        self.user1=user_1
+        self.user2=user_2
     def run(self):
         print "Starting " + self.name
-        generate_data(self.user_1, self.user_2)
+        generate_data(self.user1, self.user2)
         print "Exiting " + self.name
 
 def obtain_users_from_redis():
