@@ -2,12 +2,13 @@ import redis
 import time
 
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
-today_date="competetors"
+key="competetors"
 uid=1000000
-for i in range(1,100000):
+while i<=100000:
 	u1=uid+i
-	i+=1
+	i=i+1
 	u2=uid+i
+	i=i+1
 	print(str(u1))
 	comp=str(u1)+","+str(u2)
-	r.lpush(today_date,comp)
+	r.lpush(key,comp)
