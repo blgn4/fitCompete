@@ -23,7 +23,7 @@ class userThreads (threading.Thread):
         print "Starting " + self.name
         generate_data(self.user1, self.user2)
         print "Exiting " + self.name
-'''
+
 def obtain_users_from_redis():
 	print('hello')
 	r = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
@@ -37,11 +37,13 @@ def obtain_users_from_redis():
 		generate_data(user[0],user[1])
 		count=count+1
 		
+'''		
 		
 
-def generate_data(us1,us2):
+def generate_data():
 
-	print us1
+	us1=100
+	us2=101
 
 	start_time=int(round(time.time()*1000))
 	diff=0
@@ -80,16 +82,16 @@ def generate_data(us1,us2):
 
 		data1=str(us1)+","+str(bmi1)+","+str(fat_range1)+","+str(steps1)+","+str(floors1)+","+str(cal_in1)+","+str(cal_out_rate1)+","+str(speed1)+","+str(hr1)+","+str(tot_time)+","+date
 		print data1
-		send_data('influx5',data1)
+		send_data('influx2',data1)
 
 		data2=str(us2)+","+str(bmi2)+","+str(fat_range2)+","+str(steps2)+","+str(floors2)+","+str(cal_in2)+","+str(cal_out_rate2)+","+str(speed2)+","+str(hr2)+","+str(tot_time)+","+date
-		send_data('influx5',data2)
+		send_data('influx2',data2)
 
 		diff=int(round(time.time()*1000))-start_time
 
 
 
-generate_data(100,101)
+generate_data()
 
 
 
