@@ -5,13 +5,11 @@ def generate_user_profiles():
 	client=InfluxDBClient('localhost',8086,'root','root','niha')
 	query='select user_id,last(date) from fitbit_data group by  user_id'
 	result = client.query(query)
-	print result
 	for x in result:
 		user_date[x[0]['user_id']] = x[0]['last']
 	for key, value in user_date.iteritems():
 		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from fitbit_data where user_id='"+str(key)+"' and date='"+value +"' group by user_id,bmi,fat,steps,floors,calories,total_time,date"
 		res = client.query(que)
-		print 'This is the first result set element:\n'+res
 		for x in res:
 			tags=x[0].keys()[0]
 			values=x[0]
