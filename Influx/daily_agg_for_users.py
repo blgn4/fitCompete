@@ -6,7 +6,7 @@ def generate_user_profiles():
 	query='select user_id,last(date) from fitbit_data group by  user_id'
 	result = client.query(query)
 	for x in result:
-		print x[0]
+		print x[0][user_id]
 
 
 
