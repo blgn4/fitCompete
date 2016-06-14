@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>fitbit</groupId>
+  <artifactId>simcomp</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>simcomp</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.spark</groupId>
+    	<artifactId>spark-core_2.10</artifactId>
+    	<version>1.6.1</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.pygmalios</groupId>
+    	<artifactId>reactiveinflux_2.10</artifactId>
+    	<version>0.10.0.4</version>
+    </dependency>
+    <!-- http://mvnrepository.com/artifact/com.typesafe.netty/netty-http-pipelining -->
+	<dependency>
+	    <groupId>com.typesafe.netty</groupId>
+	    <artifactId>netty-http-pipelining</artifactId>
+	    <version>1.1.4</version>
+	</dependency>
+
+  </dependencies>
+</project>
