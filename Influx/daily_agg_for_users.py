@@ -25,8 +25,7 @@ def generate_user_profiles():
 		calories_rate=vals[1]
 		heart_rate=vals[2]
 		data2=[{"measurement":"final_data1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
-		print data2
-		client.write_point(data2)
+		client.write_points(data2)
 		
 
 
