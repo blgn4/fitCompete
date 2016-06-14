@@ -11,8 +11,8 @@ def generate_user_profiles():
 		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from fitbit_data where user_id='"+str(key)+"' and date='"+value +"' group by user_id,bmi,fat,steps,floors,calories,total_time,date"
 		res = client.query(que)
 		for x in res:
-			tags=x[0].keys()[0]
-			values=x[0]
+			tags=x.keys()[0]
+			values=x.values[0]
 			print tags
 			print values
 			'''
