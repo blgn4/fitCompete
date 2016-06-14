@@ -12,9 +12,10 @@ def generate_user_profiles():
 		res = client.query(que)
 		res1= res.raw
 		vals=res1['series']
+		print vals
 		tags=res1['tags']
 
-		print vals
+		
 
 		print '\n'+tags
 		
