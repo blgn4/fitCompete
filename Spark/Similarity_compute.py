@@ -6,7 +6,7 @@ def get_data_from_influx():
 	query='select * from final_data1'
 	result=client.query(query)
 	res=result.raw
-	vals=res['values']
+	vals=res['series']['values']
 	for val in vals:
 		print val
 
