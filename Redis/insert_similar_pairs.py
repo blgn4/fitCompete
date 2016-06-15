@@ -5,50 +5,38 @@ r = redis.StrictRedis(host='localhost', port=6379, db=0)
 key="timeperiod1"
 uid=100000
 i=1
-while i<=29999:
-	u1=uid+i
-	i=i+1
-	u2=uid+i
-	i=i+1
-	comp=str(u1)+","+str(u2)
+while i<=30000:
+	comp=uid+i
 	r.lpush(key,comp)
+	i=i+1
+print i
 
-print i
 key="timeperiod2"
-while i<=45001:
-	u1=uid+i
-	i=i+1
-	u2=uid+i
-	i=i+1
-	comp=str(u1)+","+str(u2)
+while i<=45000:
+	comp=uid+i
 	r.lpush(key,comp)
+	i=i+1
 print i
+
 key="timeperiod3"
-while i<=75001:
-	u1=uid+i
-	i=i+1
-	u2=uid+i
-	i=i+1
-	comp=str(u1)+","+str(u2)
+while i<=75000:
+	comp=uid+i
 	r.lpush(key,comp)
+	i=i+1
 print i
+
 key="timeperiod4"
-while i<=90001:
-	u1=uid+i
-	i=i+1
-	u2=uid+i
-	i=i+1
-	comp=str(u1)+","+str(u2)
+while i<=90000:
+	comp=uid+i
 	r.lpush(key,comp)
+	i=i+1
 print i
+
 key="timeperiod5"
 while i<=99999:
-	u1=uid+i
-	i=i+1
-	u2=uid+i
-	i=i+1
-	comp=str(u1)+","+str(u2)
+	comp=uid+i
 	r.lpush(key,comp)
+	i=i+1
 print i
 
 

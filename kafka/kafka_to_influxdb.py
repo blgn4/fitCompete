@@ -10,9 +10,8 @@ for msg in consumer:
         data=msg.value
         d=data.split(",")
 
-        data1=[{"measurement":"fitdata" , "tags":{"user_id":int(d[0][1:]),"bmi":+int(d[1]),"fat":int(d[2]),"steps":int(d[3]),"floors":int(d[4]),"calories":int(d[5]),"total_time":int(d[9])},"fields":{"speed":int(d[7]),"calories_rate":int(d[6]),"heart_rate":int(d[6]),"date":d[10][:-1] }}]
-        print data1
-        client=InfluxDBClient('localhost',8086,'root','root','niha')
+        data1=[{"measurement":"week3_try1","tags":{"user_id":int(d[0][1:])},"fields":{"heart_rate":int(d[1]),"speed":int(d[2]),"calories_rate":int(d[3]),,"date":d[4][:-1]}}]
+        client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
         client.write_points(data1)
 
 

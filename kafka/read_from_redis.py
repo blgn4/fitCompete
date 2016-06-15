@@ -1,29 +1,58 @@
 import redis
-import thread
 import time
 from kafka import KafkaProducer
 import random
-import threading
 from time import sleep
+import sys
 
-producer = KafkaProducer(bootstrap_servers='ec2-52-38-54-51.us-west-2.compute.amazonaws.com:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+
+import datetime
+
+producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+redis_client = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
+
+def check_timings():
+	key=''
+	now = int(datetime.datetime.now().strftime('%H'))
+	if now >= 5 and now < 11:
+		key ='timeperiod1'
+	elif now >=11 and now < 15:
+		key='timeperiod2'
+	elif now >=15 and now < 20:
+		key = 'timeperiod3'
+	elif now >=20 and now <23:
+		key = 'timeperiod4'
+	elif now >=23 and now <=24:
+		key='timeperiod5'
+	else:
+		key='sleep'
+	return key
+
+key = check_timings()
+while key != 'sleep':
+	list_length=redis_client.llen(key)
+	user_number=random.randrange(0,listlength+1)
+	generate_ex_profile(user_number)
+	key = check_timings()
+
+if key == 'sleep':
+	sys.exit()
+
+
+def generate_ex_profile(usr):
+	hr=random.randrange(60,200)
+	speed=random.randrange(2,6)
+	cal_out_rate=random.randrange(6,10)
+	date=time.strftime("%d-%m-%Y")
+	data1=str(usr)+","+str(hr)+","+str(speed)+","+str(cal_out_rate)+","+date
+	send_data('influx',data1)
+
 
 def send_data(topic,data):
 	producer.send(topic,data)
 
 
-class userThreads (threading.Thread):
-    def __init__(self,counter, user_1,user_2):
-        threading.Thread.__init__(self)
-        self.threadID = counter
-        self.name = str(user_1)+"-->"+str(user_2)
-        self.user1=user_1
-        self.user2=user_2
-    def run(self):
-        print "Starting " + self.name
-        generate_data(self.user1, self.user2)
-        print "Exiting " + self.name
-
+'''
 def obtain_users_from_redis():
 	print('hello')
 	r = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
@@ -39,9 +68,8 @@ def obtain_users_from_redis():
 		sleep(900)
 		
 		
-		
 
-def generate_data(us1,us2):
+def generate_data(us1):
 
 
 	start_time=int(round(time.time()*1000))
@@ -91,7 +119,7 @@ def generate_data(us1,us2):
 
 
 obtain_users_from_redis()
-
+'''
 
 
 
