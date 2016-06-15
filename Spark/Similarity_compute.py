@@ -90,9 +90,7 @@ rdd = sc.parallelize(list_1)
 
 tupls=rdd.map(split_string)
 
-buckets=tupls.reduceByKey(lambda a,b: a+b)
-
-buckets.collect().foreach(println)
+buckets=tupls.reduceByKey(lambda a,b: a+b).collect()
 
 
 
