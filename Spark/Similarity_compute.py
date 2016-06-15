@@ -92,7 +92,7 @@ tupls=rdd.map(split_string)
 
 buckets=tupls.reduceByKey(lambda a,b: a+b).collect()
 
-for each b in buckets:
+for b in buckets:
 	print b
 
 
