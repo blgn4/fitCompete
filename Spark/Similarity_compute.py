@@ -11,7 +11,7 @@ def get_data_from_influx():
 	for val in vals:
 		str1=''
 		
-		bmi=vals[1]
+		bmi=val[1]
 		if bmi <24:
 			str1+='L'
 		elif bmi>=24 and bmi<30:
@@ -19,7 +19,7 @@ def get_data_from_influx():
 		else:
 			str1+='H'
 		
-		calories=vals[2]
+		calories=val[2]
 		if calories < 2000:
 			str1+='L'
 		elif calories >= 2000 and calories <=2500:
@@ -27,42 +27,42 @@ def get_data_from_influx():
 		else:
 			str1+='H'
 		
-		calories_rate=vals[3]
+		calories_rate=val[3]
 		if calories_rate < 8:
 			str1+='L'
 		elif calories_rate >= 8 and calories_rate <=9:
 			str1+='M'
 		else:
 			str1+='H'
-		fat=vals[4]
+		fat=val[4]
 		if fat < 18:
 			str1+='L'
 		elif fat >= 18 and calories_rate <=21:
 			str1+='M'
 		else:
 			str1+='H'
-		floors=vals[5]
+		floors=val[5]
 		if floors < 8:
 			str1+='L'
 		elif floors >=8 and floors <= 16:
 			str1+='M'
 		else:
 			str1+='H'
-		heart_rate=vals[6]
+		heart_rate=val[6]
 		if heart_rate < 107:
 			str1+='L'
 		elif heart_rate>=107 and heart_rate <= 153:
 			str1+='M'
 		else:
 			str1+='H'
-		speed=vals[7]
+		speed=val[7]
 		if speed < 4:
 			str1+='L'
 		elif speed >=4 and speed <5:
 			str1+='M'
 		else:
 			str1+='H'
-		steps=vals[8]
+		steps=val[8]
 		if steps <3000:
 			str1+='L'
 		elif steps >= 3000 and steps <= 6000:
