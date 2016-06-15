@@ -1,10 +1,9 @@
 package fitbit.simcomp;
 
-
-public class App 
+public class SimilarityCompute 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        
     }
 }
