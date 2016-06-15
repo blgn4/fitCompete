@@ -77,7 +77,8 @@ def get_data_from_influx():
 		count +=1
 	return str2
 
-
+appName='Similarity_APP'
+master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
 conf = SparkConf().setAppName(appName).setMaster(master)
 sc = SparkContext(conf=conf)
 
