@@ -75,11 +75,27 @@ def get_data_from_influx():
 		str2.append(str1)
 	return str2
 
+def split_string(s):
+	tup = s.split(',')
+	return (tup[0],[tup[1]])
+
+
 appName='Similarity_APP'
 master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
 conf = SparkConf().setAppName(appName).setMaster(master)
 sc = SparkContext(conf=conf)
 
 list_1 = get_data_from_influx()
-distData = sc.parallelize(list_1)
+rdd = sc.parallelize(list_1)
+
+tupls=rdd.map(split_string)
+
+buckets=tupls.reduceByKey(lambda a,b: a+b)
+
+buckets.collect().foreach(println)
+
+
+
+
+
 
