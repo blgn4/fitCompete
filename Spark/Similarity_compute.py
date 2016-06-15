@@ -7,3 +7,5 @@ def get_data_from_influx():
 	result=client.query(query)
 	print result
 
+get_data_from_influx()
+
