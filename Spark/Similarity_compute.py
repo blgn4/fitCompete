@@ -9,7 +9,6 @@ def get_data_from_influx():
 	series=res['series'][0]
 	vals=series['values']
 	str2=[]
-	count=0
 	for val in vals:
 		str1=''		
 		bmi=val[1]
@@ -73,8 +72,7 @@ def get_data_from_influx():
 		user_id=val[9]
 		str1+=','
 		str1+=user_id
-		str2[count]=str1
-		count +=1
+		str2.append(str1)
 	return str2
 
 appName='Similarity_APP'
