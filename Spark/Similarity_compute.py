@@ -8,9 +8,10 @@ def get_data_from_influx():
 	res=result.raw
 	series=res['series'][0]
 	vals=series['values']
+	str2=[]
+	count=0
 	for val in vals:
-		str1=''
-		
+				
 		bmi=val[1]
 		if bmi <24:
 			str1+='L'
@@ -70,9 +71,16 @@ def get_data_from_influx():
 		else:
 			str1+='H'
 		user_id=val[9]
+		str1+=','
 		str1+=user_id
-		print str1
+		str2[count]=str1
+		count +=1
+	return str2
 
 
-get_data_from_influx()
+conf = SparkConf().setAppName(appName).setMaster(master)
+sc = SparkContext(conf=conf)
+
+list_1 = get_data_from_influx()
+distData = sc.parallelize(data)
 
