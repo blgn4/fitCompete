@@ -81,5 +81,5 @@ conf = SparkConf().setAppName(appName).setMaster(master)
 sc = SparkContext(conf=conf)
 
 list_1 = get_data_from_influx()
-distData = sc.parallelize(data)
+distData = sc.parallelize(list_1)
 
