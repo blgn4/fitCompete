@@ -69,7 +69,7 @@ def get_data_from_influx():
 			str1+='M'
 		else:
 			str1+='H'
-		user_id=vals[9]
+		user_id=val[9]
 		str1+=user_id
 		print str1
 
