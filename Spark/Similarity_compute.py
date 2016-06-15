@@ -11,7 +11,7 @@ def get_data_from_influx():
 	str2=[]
 	count=0
 	for val in vals:
-				
+		str1=''		
 		bmi=val[1]
 		if bmi <24:
 			str1+='L'
