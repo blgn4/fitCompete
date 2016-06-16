@@ -2,7 +2,7 @@ from pyspark import SparkContext, SparkConf
 from influxdb import InfluxDBClient
 import redis
 
-redis_client = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
+
 
 def get_data_from_influx():
 	client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
@@ -83,7 +83,11 @@ def split_string(s):
 	return (tup[0],[tup[1]])
 
 def write_into_redis(s):
-	redis_client.lpush('newkey',s)
+	redis_client = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
+	pipe = redis_client.pipeline()
+	pipe.lpush('ex_groups',s)
+	pipe.execute()
+
 
 
 
@@ -99,7 +103,7 @@ tupls=rdd.map(split_string)
 
 buckets=tupls.reduceByKey(lambda a,b: a+b)
 
-buckets.foreach(write_into_redis)
+buckets.foreachPartition(write_into_redis)
 
 
 
