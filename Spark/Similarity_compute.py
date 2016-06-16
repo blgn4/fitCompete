@@ -89,7 +89,7 @@ def write_into_redis(s):
 	pipe = redis_client.pipeline()
 	i=s.next()
 	for j in i[1]:
-		pipe.lpush('ex_groups',j)
+		pipe.lpush(key,j)
 	pipe.execute()
 	write_into_redis.count+=1
 
