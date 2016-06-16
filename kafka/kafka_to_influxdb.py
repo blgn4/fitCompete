@@ -1,7 +1,7 @@
 from kafka import KafkaConsumer
 from influxdb import InfluxDBClient
 
-consumer = KafkaConsumer('week3_topic',bootstrap_servers='localhost:9092')
+consumer = KafkaConsumer('mytopic',bootstrap_servers='localhost:9092')
 
 for msg in consumer:
         data=msg.value

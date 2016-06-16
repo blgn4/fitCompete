@@ -13,7 +13,7 @@ def generate_ex_profile(usr):
 	cal_out_rate=random.randrange(6,10)
 	date=time.strftime("%d-%m-%Y")
 	data1=str(usr)+","+str(hr)+","+str(speed)+","+str(cal_out_rate)+","+date
-	producer.send('week3_topic',data1)
+	producer.send('mytopic',data1)
 	print str(usr)
 
 while (1):
