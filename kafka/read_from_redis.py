@@ -5,7 +5,7 @@ from time import sleep
 import sys
 import datetime
 
-producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers='localhost:9092')
 
 def generate_ex_profile(usr):
 	hr=random.randrange(60,200)
@@ -13,11 +13,11 @@ def generate_ex_profile(usr):
 	cal_out_rate=random.randrange(6,10)
 	date=time.strftime("%d-%m-%Y")
 	data1=str(usr)+","+str(hr)+","+str(speed)+","+str(cal_out_rate)+","+date
-	send_data('week3_topic',data1)
+	producer.send('week3_topic',data1)
 	print str(usr)
 
 def send_data(topic,data):
-	producer.send(topic,data)
+	
 
 
 while (1):
