@@ -86,7 +86,7 @@ def write_into_redis(s):
 	redis_client = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
 	pipe = redis_client.pipeline()
 	for i in s:
-		pipe.lpush(i[0],i[1])
+		pipe.lpush(i[0],*i[1])
 	pipe.execute()
 	
 
