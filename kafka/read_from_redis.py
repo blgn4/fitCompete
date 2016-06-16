@@ -16,10 +16,6 @@ def generate_ex_profile(usr):
 	producer.send('week3_topic',data1)
 	print str(usr)
 
-def send_data(topic,data):
-	
-
-
 while (1):
 	now = int(datetime.datetime.now().strftime('%H'))
 	if now >= 4 and now < 11:
