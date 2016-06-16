@@ -17,7 +17,7 @@ def generate_ex_profile(usr):
 	print str(usr)
 
 while (1):
-	now = int(datetime.datetime.now().strftime('%H'))
+	now = int(datetime.datetime.now().strftime('%H'))-7
 	if now >= 4 and now < 11:
 		usrr = random.randrange(1,10000)
 		generate_ex_profile(usrr)
