@@ -7,6 +7,18 @@ import datetime
 
 producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
+def generate_ex_profile(usr):
+	hr=random.randrange(60,200)
+	speed=random.randrange(2,6)
+	cal_out_rate=random.randrange(6,10)
+	date=time.strftime("%d-%m-%Y")
+	data1=str(usr)+","+str(hr)+","+str(speed)+","+str(cal_out_rate)+","+date
+	send_data('week3_topic',data1)
+	print str(usr)
+
+def send_data(topic,data):
+	producer.send(topic,data)
+
 
 while (1):
 	now = int(datetime.datetime.now().strftime('%H'))
@@ -32,18 +44,10 @@ while (1):
 		sleep(14400)
 
 
-def generate_ex_profile(usr):
-	hr=random.randrange(60,200)
-	speed=random.randrange(2,6)
-	cal_out_rate=random.randrange(6,10)
-	date=time.strftime("%d-%m-%Y")
-	data1=str(usr)+","+str(hr)+","+str(speed)+","+str(cal_out_rate)+","+date
-	send_data('week3_topic',data1)
-	print str(usr)
 
 
-def send_data(topic,data):
-	producer.send(topic,data)
+
+
 
 
 
