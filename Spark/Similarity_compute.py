@@ -1,5 +1,6 @@
 from pyspark import SparkContext, SparkConf
 from influxdb import InfluxDBClient
+import redis
 
 def get_data_from_influx():
 	client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
@@ -79,6 +80,9 @@ def split_string(s):
 	tup = s.split(',')
 	return (tup[0],[tup[1]])
 
+def write_into_redis(s):
+	print s
+
 
 appName='Similarity_APP'
 master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
@@ -90,10 +94,12 @@ rdd = sc.parallelize(list_1)
 
 tupls=rdd.map(split_string)
 
-buckets=tupls.reduceByKey(lambda a,b: a+b).collect()
+buckets=tupls.reduceByKey(lambda a,b: a+b)
 
-for b in buckets:
-	print b
+buckets.foreach(write_into_redis)
+
+
+
 
 
 
