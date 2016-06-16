@@ -83,7 +83,8 @@ def split_string(s):
 	return (tup[0],[tup[1]])
 
 def write_into_redis(s):
-	key='group'+write_into_redis.count
+	num=str(write_into_redis.count)
+	key='group'+num
 	redis_client = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
 	pipe = redis_client.pipeline()
 	i=s.next()
