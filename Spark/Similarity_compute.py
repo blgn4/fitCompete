@@ -111,10 +111,9 @@ buckets=tupls.reduceByKey(lambda a,b: a+b)
 write_into_redis.count=0
 buckets.foreachPartition(write_into_redis)
 
-val =buckets.collect().foreach(p)
+val =buckets.collect()
 
-def p():
-	print p
+print val
 
 
 
