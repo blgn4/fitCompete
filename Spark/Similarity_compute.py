@@ -83,6 +83,7 @@ def split_string(s):
 	return (tup[0],[tup[1]])
 
 def write_into_redis(s):
+	write_into_redis.count+=1
 	num=str(write_into_redis.count)
 	key='group'+num
 	redis_client = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
@@ -91,7 +92,7 @@ def write_into_redis(s):
 	for j in i[1]:
 		pipe.lpush(key,j)
 	pipe.execute()
-	write_into_redis.count+=1
+	
 
 
 
@@ -110,9 +111,10 @@ buckets=tupls.reduceByKey(lambda a,b: a+b)
 write_into_redis.count=0
 buckets.foreachPartition(write_into_redis)
 
-val =buckets.count()
+val =buckets.collect.foreach(p)
 
-print val
+def p():
+	print p
 
 
 
