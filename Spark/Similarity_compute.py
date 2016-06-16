@@ -6,7 +6,7 @@ import redis
 
 def get_data_from_influx():
 	client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
-	query='select * from final_data1'
+	query='select * from week3_final1'
 	result=client.query(query)
 	res=result.raw
 	series=res['series'][0]
@@ -107,9 +107,6 @@ buckets=tupls.reduceByKey(lambda a,b: a+b)
 write_into_redis.count=0
 buckets.foreachPartition(write_into_redis)
 
-val =buckets.collect()
-
-print val
 
 
 
