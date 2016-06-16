@@ -1,4 +1,3 @@
-import redis
 import time
 from kafka import KafkaProducer
 import random
@@ -7,7 +6,6 @@ import sys
 import datetime
 
 producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
-redis_client = redis.StrictRedis(host='ec2-52-10-235-49.us-west-2.compute.amazonaws.com', port=6379, db=0)
 
 
 while (1):
@@ -40,7 +38,8 @@ def generate_ex_profile(usr):
 	cal_out_rate=random.randrange(6,10)
 	date=time.strftime("%d-%m-%Y")
 	data1=str(usr)+","+str(hr)+","+str(speed)+","+str(cal_out_rate)+","+date
-	send_data('influx',data1)
+	send_data('week3_topic',data1)
+	print str(usr)
 
 
 def send_data(topic,data):
