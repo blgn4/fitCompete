@@ -37,7 +37,7 @@ while (1):
 		usrr = random.randrange(1,10000)
 		generate_ex_profile(usrr)
 	else:
-		sleep(14400)
+		sleep(1)
 
 
 
