@@ -1,4 +1,5 @@
 from influxdb import InfluxDBClient
+import random
 
 def generate_user_profiles():
 	user_date={}
@@ -6,8 +7,8 @@ def generate_user_profiles():
 	query='select user_id,last(date) from week3_try1 group by  user_id'
 	result = client.query(query)
 	for x in result:
-		print x
 		user_date[x[0]['user_id']] = x[0]['last']
+	print 'done obtaining user latest dates'
 	for key, value in user_date.iteritems():
 		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+str(key)+"' and date='"+value +"' group by user_id"
 		res = client.query(que)
@@ -25,10 +26,9 @@ def generate_user_profiles():
 		steps=random.randrange(1000,10000)
 		floors=random.randrange(0,25)
 		calories=random.randrange(1500,3000)
-
-		print user_id
 		data2=[{"measurement":"week3_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
 		client.write_points(data2)
+	print done!!
 		
 
 
