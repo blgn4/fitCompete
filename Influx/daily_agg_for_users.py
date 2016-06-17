@@ -6,8 +6,8 @@ def generate_user_profiles():
 	query='select user_id,last(date) from week3_try1 group by  user_id'
 	result = client.query(query)
 	for x in result:
+		print x
 		user_date[x[0]['user_id']] = x[0]['last']
-	print 'obtained user recency'
 	for key, value in user_date.iteritems():
 		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+str(key)+"' and date='"+value +"' group by user_id"
 		res = client.query(que)
