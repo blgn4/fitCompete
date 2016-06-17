@@ -3,7 +3,7 @@ from influxdb import InfluxDBClient
 import redis
 
 redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
-redis.flushall()
+redis_client.flushall()
 
 def get_data_from_influx():
 	client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
