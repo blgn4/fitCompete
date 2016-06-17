@@ -91,8 +91,6 @@ def write_into_redis(s):
 	
 
 
-
-
 appName='Similarity_APP'
 master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
 conf = SparkConf().setAppName(appName).setMaster(master)
