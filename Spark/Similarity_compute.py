@@ -13,7 +13,7 @@ def get_data_from_influx():
 	res=result.raw
 	series=res['series'][0]
 	vals=series['values']
-	print vals
+	print res
 	str2=[]
 	for val in vals:
 		str1=''		
