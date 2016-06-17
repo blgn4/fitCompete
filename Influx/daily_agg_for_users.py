@@ -28,7 +28,7 @@ def generate_user_profiles():
 		calories=random.randrange(1500,3000)
 		data2=[{"measurement":"week3_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
 		client.write_points(data2)
-	print done!!
+	print 'done!!'
 		
 
 
