@@ -12,17 +12,20 @@ user_date={}
 client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
 
 query='select user_id,last(date) from week3_try1 group by  user_id'
-start_time=time.time()
+
 result = client.query(query)
+start_time=time.time()
+
+for x in result:
+	user_date[x[0]['user_id']] = x[0]['last']
+
 print("--- %s seconds ---" % (time.time() - start_time))
 
 # user_date_raw=sc.parallelize(result)
 # user_date=user_date_raw.map()
 # count=0
-# for x in result:
-# 	print count
-# 	count+=1
-	# user_date[x[0]['user_id']] = x[0]['last']
+# 
+	#
 # print 'done obtaining user latest dates'
 # for key, value in user_date.iteritems():
 # 	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+str(key)+"' and date='"+value +"' group by user_id"
