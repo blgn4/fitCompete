@@ -22,6 +22,7 @@ for val in series:
 	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+value[1]+"' and date='"+value[2]+"' group by user_id"
 	res = client.query(que)
 	res1= res.raw
+	print time.time()
 
 
 # 
