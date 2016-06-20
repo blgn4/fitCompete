@@ -17,8 +17,9 @@ def form_tuples(s):
 def write_into_influx(s):
 	data1=[]
 	for i in s:
-		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+i[1]+"' and date='"+i[2]+"' group by user_id"
-		queries.append(que)
+		print i
+		# que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+i[1]+"' and date='"+i[2]+"' group by user_id"
+		# queries.append(que)
 	# 	res = client.query(que)
 	# 	res1= res.raw
 	# 	series=res1['series'][0]
@@ -51,7 +52,7 @@ raw_data=sc.parallelize(series)
 
 user_data=raw_data.map(form_tuples)
 
-# user_data.foreachPartition(write_into_influx)
+user_data.foreachPartition(write_into_influx)
 
 # for val1 in series1:
 # 	value1=val1['values'][0]
