@@ -35,7 +35,8 @@ def write_into_influx(s):
 		calories=random.randrange(1500,3000)
 		data2={"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}
 		data1.append(data2)
-	client.write_points(data1)
+		print data2
+	# client.write_points(data1)
 
 
 
@@ -49,7 +50,7 @@ raw_data=sc.parallelize(series)
 
 user_data=raw_data.map(form_tuples)
 
-# user_data.foreachPartition(write_into_influx)
+user_data.foreachPartition(write_into_influx)
 
 # for val1 in series1:
 # 	value1=val1['values'][0]
