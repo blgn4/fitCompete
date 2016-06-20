@@ -16,12 +16,13 @@ query='select user_id,last(date) from week3_try1 group by  user_id'
 result = client.query(query)
 start_time=time.time()
 
-for x in result:
-	user_date[x[0]['user_id']] = x[0]['last']
+user_date_raw=sc.parallelize(result)
+# for x in result:
+# 	user_date[x[0]['user_id']] = x[0]['last']
 
 print("--- %s seconds ---" % (time.time() - start_time))
 
-# user_date_raw=sc.parallelize(result)
+# 
 # user_date=user_date_raw.map()
 # count=0
 # 
