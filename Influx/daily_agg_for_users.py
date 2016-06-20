@@ -16,7 +16,13 @@ query='select user_id,last(date) from week3_try1 group by  user_id'
 result = client.query(query)
 res=result.raw
 
-print res
+series=res['series']
+for val in series:
+	value=val['values']
+	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+value[1]+"' and date='"+value[2]+"' group by user_id"
+	res = client.query(que)
+	res1= res.raw
+
 
 # 
 # user_date=user_date_raw.map()
