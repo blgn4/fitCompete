@@ -18,8 +18,8 @@ def write_into_influx(s):
 	data1=[]
 	for i in s:
 		print i
-		# que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+i[1]+"' and date='"+i[2]+"' group by user_id"
-		# queries.append(que)
+		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+i[0]+"' and date='"+i[1]+"' group by user_id"
+		queries.append(que)
 	# 	res = client.query(que)
 	# 	res1= res.raw
 	# 	series=res1['series'][0]
