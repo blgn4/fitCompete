@@ -15,6 +15,7 @@ def form_tuples(s):
 	return (strg[1],strg[2])
 
 def write_into_influx(s):
+	global queries
 	for i in s:
 		print i
 		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+i[0]+"' and date='"+i[1]+"' group by user_id"
