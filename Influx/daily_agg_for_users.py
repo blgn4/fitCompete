@@ -35,7 +35,9 @@ user_data=raw_data.map(form_tuples)
 
 user_data.foreachPartition(write_into_influx)
 
+print len(queries)
 data1=[]
+
 for que in queries:
 	res = client.query(que)
 	res1= res.raw
