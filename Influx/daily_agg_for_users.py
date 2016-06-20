@@ -18,7 +18,7 @@ res=result.raw
 
 series=res['series']
 for val in series:
-	value=val['values']
+	value=val['values'][0]
 	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+value[1]+"' and date='"+value[2]+"' group by user_id"
 	res = client.query(que)
 	res1= res.raw
