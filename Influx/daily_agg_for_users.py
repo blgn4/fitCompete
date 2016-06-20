@@ -7,7 +7,7 @@ master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
 conf = SparkConf().setAppName(appName).setMaster(master)
 sc = SparkContext(conf=conf)
 user_date={}
-client=InfluxDBClient('localhost',8086,'root','root','niha')
+client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
 query='select user_id,last(date) from week3_try1 group by  user_id'
 result = client.query(query)
 
