@@ -7,7 +7,7 @@ appName='Similarity_APP'
 master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
 conf = SparkConf().setAppName(appName).setMaster(master)
 sc = SparkContext(conf=conf)
-
+client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
 
 def form_tuples(s):
 	strg=s['values'][0]
@@ -15,10 +15,9 @@ def form_tuples(s):
 
 def write_into_influx(s):
 	data1=[]
-	influx_client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
 	for i in s:
 		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+i[1]+"' and date='"+i[2]+"' group by user_id"
-		res = influx_client.query(que)
+		res = client.query(que)
 		res1= res.raw
 		series=res1['series'][0]
 		vals=series['values'][0]
@@ -40,7 +39,7 @@ def write_into_influx(s):
 
 
 
-client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
+
 query='select user_id,last(date) from week3_try1 group by  user_id'
 
 result = client.query(query)
