@@ -47,7 +47,7 @@ res=result.raw
 series=res['series']
 raw_data=sc.parallelize(series)
 
-# user_data=raw_data.map(form_tuples)
+user_data=raw_data.map(form_tuples)
 
 # user_data.foreachPartition(write_into_influx)
 
