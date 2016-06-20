@@ -51,7 +51,7 @@ raw_data=sc.parallelize(series)
 
 user_data=raw_data.map(form_tuples)
 
-user_data.foreachPartition(write_into_influx)
+# user_data.foreachPartition(write_into_influx)
 
 # for val1 in series1:
 # 	value1=val1['values'][0]
