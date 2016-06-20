@@ -1,22 +1,27 @@
 from pyspark import SparkContext, SparkConf
 from influxdb import InfluxDBClient
 import random
+import time
 
 appName='Similarity_APP'
 master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
 conf = SparkConf().setAppName(appName).setMaster(master)
 sc = SparkContext(conf=conf)
 user_date={}
+
 client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
+
 query='select user_id,last(date) from week3_try1 group by  user_id'
+start_time=time.time()
 result = client.query(query)
+print("--- %s seconds ---" % (time.time() - start_time))
 
 # user_date_raw=sc.parallelize(result)
 # user_date=user_date_raw.map()
-count=0
-for x in result:
-	print count
-	count+=1
+# count=0
+# for x in result:
+# 	print count
+# 	count+=1
 	# user_date[x[0]['user_id']] = x[0]['last']
 # print 'done obtaining user latest dates'
 # for key, value in user_date.iteritems():
