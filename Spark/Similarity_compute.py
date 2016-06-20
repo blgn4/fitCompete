@@ -1,6 +1,7 @@
 from pyspark import SparkContext, SparkConf
 from influxdb import InfluxDBClient
 import redis
+import time
 
 redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
 redis.flushall()
@@ -97,15 +98,17 @@ appName='Similarity_APP'
 master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
 conf = SparkConf().setAppName(appName).setMaster(master)
 sc = SparkContext(conf=conf)
-
+start_time = time.time()
 list_1 = get_data_from_influx()
-rdd = sc.parallelize(list_1)
 
-tupls=rdd.map(split_string)
+print("--- %s seconds ---" % (time.time() - start_time))
+# rdd = sc.parallelize(list_1)
 
-buckets=tupls.reduceByKey(lambda a,b: a+b)
-write_into_redis.count=0
-buckets.foreachPartition(write_into_redis)
+# tupls=rdd.map(split_string)
+
+# buckets=tupls.reduceByKey(lambda a,b: a+b)
+# write_into_redis.count=0
+# buckets.foreachPartition(write_into_redis)
 
 
 
