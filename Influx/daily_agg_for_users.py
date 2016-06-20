@@ -15,8 +15,8 @@ query='select user_id,last(date) from week3_try1 group by  user_id'
 
 result = client.query(query)
 res=result.raw
-for val in res:
-	print val
+
+print res[0]
 
 # 
 # user_date=user_date_raw.map()
