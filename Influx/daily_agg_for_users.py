@@ -11,8 +11,7 @@ client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'
 query='select user_id,last(date) from week3_try1 group by  user_id'
 result = client.query(query)
 
-print result
-# user_date_raw=sc.parallelize(x[0])
+user_date_raw=sc.parallelize(result)
 # user_date=user_date_raw.map()
 # for x in result:
 # 	user_date[x[0]['user_id']] = x[0]['last']
