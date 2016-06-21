@@ -15,6 +15,7 @@ def form_tuples(s):
 	return (strg[1],strg[2])
 
 def write_into_influx(s):
+	data_pnts=[]
 	for i in s:
 		print i
 		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+i[0]+"' and date='"+i[1]+"' group by user_id"
@@ -34,7 +35,8 @@ def write_into_influx(s):
 		floors=random.randrange(0,25)
 		calories=random.randrange(1500,3000)
 		data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
-		client.write_points(data2)
+		data_pnts.append(data2)
+	client.write_points(data_pnts)
 
 		
 		
