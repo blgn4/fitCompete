@@ -3,10 +3,10 @@ from influxdb import InfluxDBClient
 import random
 import time
 
-# appName='Similarity_APP'
-# master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
-# conf = SparkConf().setAppName(appName).setMaster(master)
-# sc = SparkContext(conf=conf)
+appName='Similarity_APP'
+master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
+conf = SparkConf().setAppName(appName).setMaster(master)
+sc = SparkContext(conf=conf)
 client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
 
 
@@ -50,36 +50,36 @@ res=result.raw
 count =0
 series=res['series']
 serie = series+series
-start_time=time.time()
-for ser in serie:
-	count +=1
-	strg=ser['values'][0]
-	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+strg[1]+"' and date='"+strg[2]+"' group by user_id"
-	res = client.query(que)
-	res1= res.raw
-	series=res1['series'][0]
-	vals=series['values'][0]
-	tags=series['tags']
-	user_id=tags['user_id']
-	speed=vals[1]
-	calories_rate=vals[1]
-	heart_rate=vals[2]
+# start_time=time.time()
+# for ser in serie:
+# 	count +=1
+# 	strg=ser['values'][0]
+# 	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+strg[1]+"' and date='"+strg[2]+"' group by user_id"
+# 	res = client.query(que)
+# 	res1= res.raw
+# 	series=res1['series'][0]
+# 	vals=series['values'][0]
+# 	tags=series['tags']
+# 	user_id=tags['user_id']
+# 	speed=vals[1]
+# 	calories_rate=vals[1]
+# 	heart_rate=vals[2]
 
-	bmi=random.randrange(18,35)
-	fat=random.randrange(15,25)
-	steps=random.randrange(1000,10000)
-	floors=random.randrange(0,25)
-	calories=random.randrange(1500,3000)
-	data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
-	client.write_points(data2)
+# 	bmi=random.randrange(18,35)
+# 	fat=random.randrange(15,25)
+# 	steps=random.randrange(1000,10000)
+# 	floors=random.randrange(0,25)
+# 	calories=random.randrange(1500,3000)
+# 	data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
+# 	client.write_points(data2)
 
-print("--- %s seconds ---" % (time.time() - start_time))
+# print("--- %s seconds ---" % (time.time() - start_time))
 
 
 
-# raw_data=sc.parallelize(series)
+raw_data=sc.parallelize(serie)
 
-# user_data=raw_data.map(form_tuples)
+user_data=raw_data.map(form_tuples)
 
-# user_data.foreachPartition(write_into_influx)
+user_data.foreachPartition(write_into_influx)
 
