@@ -36,7 +36,7 @@ print res1
 	# 	pipe.execute()
 	# 	pipe = redis_client.pipeline()
 	# 	count=0
-	pipe.execute()
+	# pipe.execute()
 
 
 print("--- %s seconds ---" % (time.time() - start_time))
