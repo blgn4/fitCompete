@@ -29,7 +29,6 @@ query='select user_id,last(date) from week3_try1 group by  user_id'
 result = client.query(query)
 res=result.raw
 series=res['series']
-data1=[]
 for ser in series:
 	strg=ser['values'][0]
 	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+strg[1]+"' and date='"+strg[2]+"' group by user_id"
@@ -49,8 +48,7 @@ for ser in series:
 	floors=random.randrange(0,25)
 	calories=random.randrange(1500,3000)
 	data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
-	data1.append(data2)
-client.write_points(data1)
+	client.write_points(data2)
 
 print("--- %s seconds ---" % (time.time() - start_time))
 
