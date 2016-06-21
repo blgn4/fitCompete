@@ -8,90 +8,87 @@ redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazona
 def get_data_from_influx():
 	str2=[]
 	user_list=redis_client.keys('*user*')
-	user=user_list[0]
-	val=redis_client.lrange(user,0,1)
-	print val
-	# for user in user_list:
-	# 	val=redis_client.lrange(user,0,1)
-	# 	print val
-	# 	str1=''		
-	# 	bmi=val[0]
-	# 	if bmi <24:
-	# 		str1+='L'
-	# 	elif bmi>=24 and bmi<30:
-	# 		str1+='M'
-	# 	else:
-	# 		str1+='H'
+	for user in user_list:
+		val=redis_client.lrange(user,0,1)
+		print val
+		str1=''		
+		bmi=int(val[0])
+		if bmi <24:
+			str1+='L'
+		elif bmi>=24 and bmi<30:
+			str1+='M'
+		else:
+			str1+='H'
 		
-	# 	calories=val[1]
-	# 	if calories < 2000:
-	# 		str1+='L'
-	# 	elif calories >= 2000 and calories <=2500:
-	# 		str1+='M'
-	# 	else:
-	# 		str1+='H'
+		calories=int(val[1])
+		if calories < 2000:
+			str1+='L'
+		elif calories >= 2000 and calories <=2500:
+			str1+='M'
+		else:
+			str1+='H'
 		
-	# 	calories_rate=val[2]
-	# 	if calories_rate < 8:
-	# 		str1+='L'
-	# 	elif calories_rate >= 8 and calories_rate <=9:
-	# 		str1+='M'
-	# 	else:
-	# 		str1+='H'
+		calories_rate=int(val[2])
+		if calories_rate < 8:
+			str1+='L'
+		elif calories_rate >= 8 and calories_rate <=9:
+			str1+='M'
+		else:
+			str1+='H'
 
-	# 	fat=val[3]
-	# 	if fat < 18:
-	# 		str1+='L'
-	# 	elif fat >= 18 and calories_rate <=21:
-	# 		str1+='M'
-	# 	else:
-	# 		str1+='H'
+		fat=int(val[3])
+		if fat < 18:
+			str1+='L'
+		elif fat >= 18 and calories_rate <=21:
+			str1+='M'
+		else:
+			str1+='H'
 
-	# 	floors=val[4]
-	# 	if floors < 8:
-	# 		str1+='L'
-	# 	elif floors >=8 and floors <= 16:
-	# 		str1+='M'
-	# 	else:
-	# 		str1+='H'
+		floors=int(val[4])
+		if floors < 8:
+			str1+='L'
+		elif floors >=8 and floors <= 16:
+			str1+='M'
+		else:
+			str1+='H'
 
-	# 	heart_rate=val[5]
-	# 	if heart_rate < 107:
-	# 		str1+='L'
-	# 	elif heart_rate>=107 and heart_rate <= 153:
-	# 		str1+='M'
-	# 	else:
-	# 		str1+='H'
+		heart_rate=int(val[5])
+		if heart_rate < 107:
+			str1+='L'
+		elif heart_rate>=107 and heart_rate <= 153:
+			str1+='M'
+		else:
+			str1+='H'
 
-	# 	speed=val[6]
-	# 	if speed < 4:
-	# 		str1+='L'
-	# 	elif speed >=4 and speed <5:
-	# 		str1+='M'
-	# 	else:
-	# 		str1+='H'
+		speed=int(val[6])
+		if speed < 4:
+			str1+='L'
+		elif speed >=4 and speed <5:
+			str1+='M'
+		else:
+			str1+='H'
 
-	# 	steps=val[8]
-	# 	if steps <3000:
-	# 		str1+='L'
-	# 	elif steps >= 3000 and steps <= 6000:
-	# 		str1+='M'
-	# 	else:
-	# 		str1+='H'
+		steps=int(val[8])
+		if steps <3000:
+			str1+='L'
+		elif steps >= 3000 and steps <= 6000:
+			str1+='M'
+		else:
+			str1+='H'
 
-	# 	period=val[6]
-	# 	if period==0:
-	# 		str1+='M'
-	# 	elif period==1:
-	# 		str1+='A'
-	# 	elif period==2:
-	# 		str1+='E'
+		period=int(val[6])
+		if period==0:
+			str1+='M'
+		elif period==1:
+			str1+='A'
+		elif period==2:
+			str1+='E'
 
-	# 	user_id=user.split(':')[1]
-	# 	str1+=','
-	# 	str1+=user_id
-	# 	str2.append(str1)
-	# return str2
+		user_id=user.split(':')[1]
+		str1+=','
+		str1+=user_id
+		str2.append(str1)
+	return str2
 
 def split_string(s):
 	tup = s.split(',')
