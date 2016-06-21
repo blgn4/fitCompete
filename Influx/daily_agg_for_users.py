@@ -34,7 +34,7 @@ def write_into_influx(s):
 		steps=random.randrange(1000,10000)
 		floors=random.randrange(0,25)
 		calories=random.randrange(1500,3000)
-		data2=[bmi,calories,calories_rate,fat,floors,heart_rate,speed,steps]
+		data2=['bmi'+bmi,'calories'+calories,'CR'+calories_rate,'fat'+fat,'floors'+floors,'hr'+heart_rate,'speed'+speed,'steps'+steps]
 		key='user:'+i[0]
 		redis_client.delete(key)
 		pipe.lpush(key,*data2)
