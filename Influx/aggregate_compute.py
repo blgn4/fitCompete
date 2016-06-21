@@ -17,9 +17,9 @@ for val in series:
 	vals=val['values'][0]
 	tags=val['tags']
 	user_id=tags['user_id']
-	speed=vals[0]
-	calories_rate=vals[1]
-	heart_rate=vals[2]
+	speed=str(vals[0])
+	calories_rate=str(vals[1])
+	heart_rate=str(vals[2])
 	bmi=str(random.randrange(18,35))
 	fat=str(random.randrange(15,25))
 	steps=str(random.randrange(1000,10000))
