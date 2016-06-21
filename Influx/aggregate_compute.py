@@ -31,10 +31,11 @@ for val in series:
 	redis_client.delete(key)
 	pipe.lpush(key,*data2)
 	count +=1
-	if count == 100000:
-		pipe.execute()
-		pipe = redis_client.pipeline()
-		count=0
+	# if count == 100000:
+	# 	pipe.execute()
+	# 	pipe = redis_client.pipeline()
+	# 	count=0
+	pipe.execute()
 
 
 print("--- %s seconds ---" % (time.time() - start_time))
