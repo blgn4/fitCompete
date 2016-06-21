@@ -2,6 +2,7 @@ from pyspark import SparkContext, SparkConf
 from influxdb import InfluxDBClient
 import random
 import time
+import redis
 
 appName='Similarity_APP'
 master='spark://ec2-50-112-193-115.us-west-2.compute.amazonaws.com:7077'
@@ -15,8 +16,9 @@ def form_tuples(s):
 	return (strg[1],strg[2])
 
 def write_into_influx(s):
+	redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
+	pipe = redis_client.pipeline()
 	for i in s:
-		print i
 		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+i[0]+"' and date='"+i[1]+"' group by user_id"
 		res = client.query(que)
 		res1= res.raw
@@ -27,55 +29,24 @@ def write_into_influx(s):
 		speed=vals[1]
 		calories_rate=vals[1]
 		heart_rate=vals[2]
-
-		# bmi=random.randrange(18,35)
-		# fat=random.randrange(15,25)
-		# steps=random.randrange(1000,10000)
-		# floors=random.randrange(0,25)
-		# calories=random.randrange(1500,3000)
-		# data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
-		# data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
-		# client.write_points(data2)
+		bmi=random.randrange(18,35)
+		fat=random.randrange(15,25)
+		steps=random.randrange(1000,10000)
+		floors=random.randrange(0,25)
+		calories=random.randrange(1500,3000)
+		data2=[bmi,calories,calories_rate,fat,floors,heart_rate,speed,steps]
+		key='user:'+i[0]
+		redis_client.delete(key)
+		pipe.lpush(key,*data2)
+	pipe.execute()
 
 		
-		
-
-
-
-
-query='select user_id,last(date) from week3_try1 group by  user_id'
+query='select user_id,last(date) from week3_try1 group by  user_id where time <= now() -1d'
 result = client.query(query)
 res=result.raw
 count =0
 series=res['series']
 serie = series+series
-# start_time=time.time()
-# for ser in serie:
-# 	count +=1
-# 	strg=ser['values'][0]
-# 	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+strg[1]+"' and date='"+strg[2]+"' group by user_id"
-# 	res = client.query(que)
-# 	res1= res.raw
-# 	series=res1['series'][0]
-# 	vals=series['values'][0]
-# 	tags=series['tags']
-# 	user_id=tags['user_id']
-# 	speed=vals[1]
-# 	calories_rate=vals[1]
-# 	heart_rate=vals[2]
-
-# 	bmi=random.randrange(18,35)
-# 	fat=random.randrange(15,25)
-# 	steps=random.randrange(1000,10000)
-# 	floors=random.randrange(0,25)
-# 	calories=random.randrange(1500,3000)
-# 	data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
-# 	client.write_points(data2)
-
-# print("--- %s seconds ---" % (time.time() - start_time))
-
-
-
 raw_data=sc.parallelize(serie)
 
 user_data=raw_data.map(form_tuples)
