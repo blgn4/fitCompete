@@ -47,13 +47,15 @@ def write_into_influx(s):
 query='select user_id,last(date) from week3_try1 group by  user_id'
 result = client.query(query)
 res=result.raw
+count =0
 series=res['series']
 for ser in series:
+	start_time=time.time()
+	count +=1
+	print start_time.strftime('%H:%M:%S')+'------------->'+count
 	strg=ser['values'][0]
 	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+strg[1]+"' and date='"+strg[2]+"' group by user_id"
-	start_time=time.time()
 	res = client.query(que)
-	print("--- %s seconds ---" % (time.time() - start_time))
 	res1= res.raw
 	series=res1['series'][0]
 	vals=series['values'][0]
