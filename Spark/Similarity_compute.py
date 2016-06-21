@@ -9,7 +9,7 @@ def get_data_from_influx():
 	str2=[]
 	user_list=redis_client.keys('*user*')
 	for user in user_list:
-		val=redis_client.lrange(user,0,1)
+		val=redis_client.lrange(user,0,-1)
 		print val
 		str1=''		
 		bmi=int(val[0])
@@ -28,7 +28,7 @@ def get_data_from_influx():
 		else:
 			str1+='H'
 		
-		calories_rate=int(val[2])
+		calories_rate=float(val[2])
 		if calories_rate < 8:
 			str1+='L'
 		elif calories_rate >= 8 and calories_rate <=9:
@@ -52,7 +52,7 @@ def get_data_from_influx():
 		else:
 			str1+='H'
 
-		heart_rate=int(val[5])
+		heart_rate=float(val[5])
 		if heart_rate < 107:
 			str1+='L'
 		elif heart_rate>=107 and heart_rate <= 153:
@@ -60,7 +60,7 @@ def get_data_from_influx():
 		else:
 			str1+='H'
 
-		speed=int(val[6])
+		speed=float(val[6])
 		if speed < 4:
 			str1+='L'
 		elif speed >=4 and speed <5:
