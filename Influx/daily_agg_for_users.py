@@ -19,7 +19,23 @@ def write_into_influx(s):
 		print i
 		que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+i[0]+"' and date='"+i[1]+"' group by user_id"
 		res = client.query(que)
-		
+		res1= res.raw
+		series=res1['series'][0]
+		vals=series['values'][0]
+		tags=series['tags']
+		user_id=tags['user_id']
+		speed=vals[1]
+		calories_rate=vals[1]
+		heart_rate=vals[2]
+
+		bmi=random.randrange(18,35)
+		fat=random.randrange(15,25)
+		steps=random.randrange(1000,10000)
+		floors=random.randrange(0,25)
+		calories=random.randrange(1500,3000)
+		data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
+		client.write_points(data2)
+
 		
 		
 
