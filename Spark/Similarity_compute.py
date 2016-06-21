@@ -7,6 +7,7 @@ redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazona
 redis_client.flushall()
 
 def get_data_from_influx():
+	str2=[]
 	user_list=redis_client.keys('*user*')
 	for user in user_list:
 		val=redis_client.lrange(user,0,-1)
