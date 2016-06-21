@@ -6,10 +6,9 @@ import redis
 
 client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
 start_time=time.time()
-que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1  where date='16-06-2016' and user_id='5502' group by user_id "
+que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1  where date='16-06-2016' group by user_id "
 res = client.query(que)
 res1= res.raw
-print res1
 series=res1['series']
 count=0
 redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
