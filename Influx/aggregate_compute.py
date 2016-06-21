@@ -5,7 +5,7 @@ import time
 client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
 
 start_time=time.time()
-query='select user_id,last(date) from week3_try1 group by  user_id where time <= now() -1d'
+query='select user_id,last(date) from week3_try1 where time <= now() -1d group by  user_id '
 result = client.query(query)
 res=result.raw
 count =0
