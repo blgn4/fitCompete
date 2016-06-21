@@ -3,8 +3,8 @@ from influxdb import InfluxDBClient
 import redis
 import time
 
-# redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
-# redis.flushall()
+redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
+redis_client.flushall()
 
 def get_data_from_influx():
 	client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
@@ -39,6 +39,7 @@ def get_data_from_influx():
 			str1+='M'
 		else:
 			str1+='H'
+
 		fat=val[4]
 		if fat < 18:
 			str1+='L'
@@ -46,6 +47,7 @@ def get_data_from_influx():
 			str1+='M'
 		else:
 			str1+='H'
+
 		floors=val[5]
 		if floors < 8:
 			str1+='L'
@@ -53,6 +55,7 @@ def get_data_from_influx():
 			str1+='M'
 		else:
 			str1+='H'
+
 		heart_rate=val[6]
 		if heart_rate < 107:
 			str1+='L'
@@ -60,21 +63,32 @@ def get_data_from_influx():
 			str1+='M'
 		else:
 			str1+='H'
-		speed=val[7]
+
+		speed=val[8]
 		if speed < 4:
 			str1+='L'
 		elif speed >=4 and speed <5:
 			str1+='M'
 		else:
 			str1+='H'
-		steps=val[8]
+
+		steps=val[9]
 		if steps <3000:
 			str1+='L'
 		elif steps >= 3000 and steps <= 6000:
 			str1+='M'
 		else:
 			str1+='H'
-		user_id=val[9]
+
+		period=val[7]
+		if period==0:
+			str1+='M'
+		elif period==1:
+			str1+='A'
+		elif period==2:
+			str1+='E'
+			
+		user_id=val[10]
 		str1+=','
 		str1+=user_id
 		str2.append(str1)
@@ -102,13 +116,13 @@ start_time = time.time()
 list_1 = get_data_from_influx()
 
 print("--- %s seconds ---" % (time.time() - start_time))
-# rdd = sc.parallelize(list_1)
+rdd = sc.parallelize(list_1)
 
-# tupls=rdd.map(split_string)
+tupls=rdd.map(split_string)
 
-# buckets=tupls.reduceByKey(lambda a,b: a+b)
-# write_into_redis.count=0
-# buckets.foreachPartition(write_into_redis)
+buckets=tupls.reduceByKey(lambda a,b: a+b)
+write_into_redis.count=0
+buckets.foreachPartition(write_into_redis)
 
 
 
