@@ -28,7 +28,7 @@ for val in series:
 	period=str(random.randrange(0,3))
 	data2=[steps,speed,period,heart_rate,floors,fat,calories_rate,calories,bmi]
 	key='user:'+user_id
-	redis_client.delete(key)
+	redis_client.delete(*key)
 	pipe.lpush(key,*data2)
 	count +=1
 	pipe.execute()

@@ -4,7 +4,6 @@ import redis
 import time
 
 redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
-redis_client.flushall()
 
 def get_data_from_influx():
 	str2=[]
@@ -98,6 +97,7 @@ def write_into_redis(s):
 	redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
 	pipe = redis_client.pipeline()
 	for i in s:
+		redis_client.delete(*i[0])
 		pipe.lpush(i[0],*i[1])
 	pipe.execute()
 	
