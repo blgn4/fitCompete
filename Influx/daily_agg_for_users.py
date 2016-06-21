@@ -50,9 +50,8 @@ res=result.raw
 count =0
 series=res['series']
 for ser in series:
-	start_time=time.time()
 	count +=1
-	print start_time.strftime('%H:%M:%S')+'------------->'+count
+	print time.strftime('%H:%M:%S')+'------------->'+count
 	strg=ser['values'][0]
 	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+strg[1]+"' and date='"+strg[2]+"' group by user_id"
 	res = client.query(que)
