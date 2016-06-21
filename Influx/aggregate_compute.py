@@ -10,7 +10,7 @@ res = client.query(que)
 res1= res.raw
 series=res1['series']
 for val in series:
-	values=val['values'][0]
+	vals=val['values'][0]
 	tags=val['tags']
 	user_id=tags['user_id']
 	speed=vals[0]
