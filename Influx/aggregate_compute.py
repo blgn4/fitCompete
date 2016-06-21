@@ -1,6 +1,7 @@
 from influxdb import InfluxDBClient
 import time
 import random
+import redis
 
 
 client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
