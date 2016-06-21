@@ -9,7 +9,8 @@ def get_data_from_influx():
 	str2=[]
 	user_list=redis_client.keys('*user*')
 	for user in user_list:
-		val=redis_client.lrange(user,0,-1)
+		val=redis_client.lrange(user,0,1)
+		print val
 		str1=''		
 		bmi=val[0]
 		if bmi <24:
