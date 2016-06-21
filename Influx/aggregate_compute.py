@@ -26,7 +26,7 @@ for val in series:
 	floors=random.randrange(0,25)
 	calories=random.randrange(1500,3000)
 	period=random.randrange(0,3)
-	data2=[bmi,calories,calories_rate,fat,floors,heart_rate,period,speed,steps]
+	data2=['bmi'+bmi,'calories'+calories,'CR'+calories_rate,'fat'+fat,'floors'+floors,'hr'+heart_rate,'period'+period,'speed'+speed,'steps'+steps]
 	key='user:'+user_id
 	redis_client.delete(key)
 	pipe.lpush(key,*data2)
