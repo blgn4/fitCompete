@@ -4,7 +4,7 @@ import random
 import time
 
 appName='Similarity_APP'
-master='spark://ec2-52-40-200-26.us-west-2.compute.amazonaws.com:7077'
+master='spark://ec2-50-112-193-115.us-west-2.compute.amazonaws.com:7077'
 conf = SparkConf().setAppName(appName).setMaster(master)
 sc = SparkContext(conf=conf)
 client=InfluxDBClient('ec2-52-10-176-111.us-west-2.compute.amazonaws.com',8086,'root','root','niha')
@@ -34,7 +34,7 @@ def write_into_influx(s):
 		# floors=random.randrange(0,25)
 		# calories=random.randrange(1500,3000)
 		# data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"bmi":int(bmi),"fat":int(fat),"steps":int(steps),"floors":int(floors), "calories":int(calories), "speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
-		data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
+		# data2=[{"measurement":"week4_final1","tags":{"user_id":user_id},"fields":{"speed":int(float(speed)), "calories_rate":int(float(calories_rate)),"heart_rate":int(float(heart_rate))}}]
 		# client.write_points(data2)
 
 		
