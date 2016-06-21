@@ -3,7 +3,7 @@ from influxdb import InfluxDBClient
 import redis
 import time
 
-redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
+# redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
 
 def get_data_from_influx():
 	str2=[]
@@ -104,21 +104,22 @@ def write_into_redis(s):
 
 
 
-appName='Similarity_APP'
-master='spark://ec2-50-112-193-115.us-west-2.compute.amazonaws.com:7077'
-conf = SparkConf().setAppName(appName).setMaster(master)
-sc = SparkContext(conf=conf)
-start_time = time.time()
+# appName='Similarity_APP'
+# master='spark://ec2-50-112-193-115.us-west-2.compute.amazonaws.com:7077'
+# conf = SparkConf().setAppName(appName).setMaster(master)
+# sc = SparkContext(conf=conf)
+# start_time = time.time()
 list_1 = get_data_from_influx()
+print list
 
-print("--- %s seconds ---" % (time.time() - start_time))
-rdd = sc.parallelize(list_1)
+# print("--- %s seconds ---" % (time.time() - start_time))
+# rdd = sc.parallelize(list_1)
 
-tupls=rdd.map(split_string)
+# tupls=rdd.map(split_string)
 
-buckets=tupls.reduceByKey(lambda a,b: a+b)
-write_into_redis.count=0
-buckets.foreachPartition(write_into_redis)
+# buckets=tupls.reduceByKey(lambda a,b: a+b)
+# write_into_redis.count=0
+# buckets.foreachPartition(write_into_redis)
 
 
 
