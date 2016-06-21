@@ -3,7 +3,7 @@ from influxdb import InfluxDBClient
 import redis
 import time
 
-# redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
+redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
 
 def get_data_from_influx():
 	str2=[]
