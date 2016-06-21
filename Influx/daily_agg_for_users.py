@@ -48,9 +48,11 @@ query='select user_id,last(date) from week3_try1 group by  user_id'
 result = client.query(query)
 res=result.raw
 count =0
+serie=[]
 series=res['series']
+serie.append(series)
 start_time=time.time()
-for ser in series:
+for ser in serie:
 	count +=1
 	strg=ser['values'][0]
 	que = "select mean(speed),mean(calories_rate),mean(heart_rate) from week3_try1 where user_id='"+strg[1]+"' and date='"+strg[2]+"' group by user_id"
