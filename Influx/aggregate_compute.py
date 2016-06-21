@@ -27,7 +27,7 @@ for val in series:
 	calories=random.randrange(1500,3000)
 	period=random.randrange(0,3)
 	data2=[bmi,calories,calories_rate,fat,floors,heart_rate,period,speed,steps]
-	key='user:'+i[0]
+	key='user:'+user_id
 	redis_client.delete(key)
 	pipe.lpush(key,*data2)
 	count +=1
