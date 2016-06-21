@@ -110,7 +110,7 @@ def write_into_redis(s):
 # sc = SparkContext(conf=conf)
 # start_time = time.time()
 list_1 = get_data_from_influx()
-print list
+print list_1
 
 # print("--- %s seconds ---" % (time.time() - start_time))
 # rdd = sc.parallelize(list_1)
