@@ -2,6 +2,7 @@ from app import app
 import redis
 import jsonify
 from flask import render_template
+from flask import request
 
 
 
@@ -16,13 +17,10 @@ def redis_counts(key_pattern):
 
 
 @app.route('/')
-
-
-@app.route('/index')
 def index():
 	return render_template("index.html", title='Fit Compete Profile')
 
-@app.route('/index', methods=['POST'])
+@app.route('/', methods=['POST'])
 def my_form_post():
     text = request.form['text']
     processed_text = text.upper()
