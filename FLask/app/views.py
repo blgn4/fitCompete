@@ -1,6 +1,7 @@
 from app import app
 import redis
 import jsonify
+from flask import render_template
 
 
 
