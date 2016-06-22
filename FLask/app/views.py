@@ -16,10 +16,11 @@ def redis_counts(key_pattern):
 
 
 @app.route('/')
+def index():
+	return render_template("index.html", title='Fit Compete Profile')
 
 @app.route('/index')
-def index():
-	return render_template("index.html")
+
 
 @app.route('/<feature>')
 def get_counts_for_feature(feature):
