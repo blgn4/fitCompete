@@ -25,7 +25,7 @@ def my_form_post():
     user_id = request.form['text']
     key = 'user:'+user_id
     rediscon=redis.StrictRedis(host='localhost', port=6379, db=0,password='')
-    res rediscon.lrange(key,0,-1)
+    res= rediscon.lrange(key,0,-1)
     return res
 
 @app.route('/<feature>')
