@@ -18,7 +18,7 @@ def redis_counts(key_pattern):
 
 @app.route('/index')
 def index():
-	return 'Fit Compete Analytics'
+	return render_template("index.html")
 
 @app.route('/<feature>')
 def get_counts_for_feature(feature):
