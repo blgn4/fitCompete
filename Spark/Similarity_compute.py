@@ -4,6 +4,9 @@ import redis
 import time
 
 redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
+redis_client.delete('*L*')
+redis_client.delete('*H*')
+redis_client.delete('*M*')
 
 def get_data_from_influx():
 	str2=[]
