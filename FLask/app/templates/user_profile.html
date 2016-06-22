@@ -23,39 +23,149 @@
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container" style="float:left;width:100%">
 
-      <div class="starter-template">
-        <div class="profile_image" style="float:left">
+      <div class="profile-template">
+        
         <img src="../static/profile_picture.png" style="width:304px;height:228px;">
+        <div class="profile_details">
+          <table class="table ">    
+            <tbody>
+              <tr>
+                <th>user id </th>
+                <td>{{user_id}}</td>
+              </tr>
+              <tr>
+                <th>bmi</th>
+                <td>{{bmi}}</td>
+              </tr>
+              <tr>
+                <th>calories</th>
+                <td>{{calories}}</td>
+              </tr>
+              <tr>
+                <th>calories out rate </th>
+                <td>{{cr}}</td>
+              </tr>
+              <tr>
+                <th>fat</th>
+                <td>{{fat}}</td>
+              </tr>
+              <tr>
+                <th>floors</th>
+                <td>{{floors}}</td>
+              </tr>
+              <tr>
+                <th>heart rate</th>
+                <td>{{hr}}</td>
+              </tr>
+              <tr>
+                <th>period</th>
+                <td>{{period}}</td>
+              </tr>
+              <tr>
+                <th>speed</th>
+                <td>{{speed}}</td>
+              </tr>
+              <tr>
+                <th>steps</th>
+                <td>{{steps}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>       
+      </div> <!-- end of profile-template -->
+
+      <div class="competors">
+        
+        <div class="select-competors">
+          <form action="." method="POST">
+          <div class="feature">
+            <p class="feat_label">BMI</p>
+            <select class="form-control" id="Bmi" >
+              <option>None</option>
+              <option>H</option>
+              <option>M</option>
+              <option>L</option>
+            </select>
+          </div>
+          <div class="feature">
+            <p class="feat_label">Calories</p>
+            <select class="form-control" id="Calories" >
+              <option>None</option>
+              <option>H</option>
+              <option>M</option>
+              <option>L</option>
+            </select>
+          </div>
+          <div class="feature">
+            <p class="feat_label">Calories_rate</p>
+            <select class="form-control" id="CR" >
+              <option>None</option>
+              <option>H</option>
+              <option>M</option>
+              <option>L</option>
+            </select>
+          </div>
+          <div class="feature">
+            <p class="feat_label">Fat</p>
+            <select class="form-control" id="Fat" >
+              <option>None</option>
+              <option>H</option>
+              <option>M</option>
+              <option>L</option>
+            </select>
+          </div>
+          <div class="feature">
+            <p class="feat_label">Floors</p>
+            <select class="form-control" id="Floors" >
+              <option>None</option>
+              <option>H</option>
+              <option>M</option>
+              <option>L</option>
+            </select>
+          </div>
+          <div class="feature">
+            <p class="feat_label">Heart Rate</p>
+            <select class="form-control" id="HR" >
+              <option>None</option>
+              <option>H</option>
+              <option>M</option>
+              <option>L</option>
+            </select>
+          </div>
+          <div class="feature">
+            <p class="feat_label">Period</p>
+            <select class="form-control" id="Period" >
+              <option>None</option>
+              <option>H</option>
+              <option>M</option>
+              <option>L</option>
+            </select>
+          </div>
+          <div class="feature">
+            <p class="feat_label">Speed</p>
+            <select class="form-control" id="Speed" >
+              <option>None</option>
+              <option>H</option>
+              <option>M</option>
+              <option>L</option>
+            </select>
+          </div>
+          <div class="feature">
+            <p class="feat_label">Steps</p>
+            <select class="form-control" id="Steps" >
+              <option>None</option>
+              <option>H</option>
+              <option>M</option>
+              <option>L</option>
+            </select>
+          </div>
+          <input type="submit" class="btn btn-info" id="profile-match" value="Submit Button">
+        </form>
         </div>
-        <div class="profile_details" style="float:left;height:228px;width:700px">
-        <table class="table table-bordered">    
-          <tbody>
-            <tr>
-              <td>user id : {{user_id}}</td>
-              <td>bmi: {{bmi}}</td>
-            </tr>
-            <tr>        
-              <td>calories : {{calories}}</td>
-              <td>calories rate: {{cr}}</td>
-            </tr>
-            <tr>
-              <td>fat : {{fat}}</td>
-              <td>floors: {{floors}}</td>
-            </tr>
-            <tr>
-              <td>heart rate : {{hr}}</td>
-              <td>period: {{period}}</td>
-            </tr>
-            <tr>
-              <td>speed : {{speed}}</td>
-              <td>steps: {{steps}}</td>
-            </tr>
-          </tbody>
-        </table>
+        
       </div>
-       </div>
 
     </div><!-- /.container -->
 

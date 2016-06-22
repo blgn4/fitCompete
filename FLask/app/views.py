@@ -1,8 +1,7 @@
 from app import app
 import redis
 import jsonify
-from flask import render_template
-from flask import request
+from flask import render_template, redirect, request,url_for
 
 
 
@@ -20,15 +19,16 @@ def redis_counts(key_pattern):
 def index():
 	return render_template("index.html", title='Fit Compete Profile')
 
-@app.route('/', methods=['POST'])
+@app.route('/user_profile', methods=['POST'])
 def my_form_post():
-    user_id = request.form['text']
-    key = 'user:'+user_id
-    rediscon=redis.StrictRedis(host='localhost', port=6379, db=0,password='')
-    res= rediscon.lrange(key,0,-1)
-    lis=['morning','afternoon','evening']
-    i=int(res[6])
-    return render_template('user_profile.html', user_id=user_id,bmi=res[0],calories=res[1],cr=res[2],fat=res[3],floors=res[4],hr=res[5],period=lis[i],speed=res[7],steps=res[8] )
+	if request.method = 'POST':
+	    user_id = request.form['text']
+	    key = 'user:'+user_id
+	    rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
+	    res= rediscon.lrange(key,0,-1)
+	    lis=['morning','afternoon','evening']
+	    i=int(res[6])
+	    return redirect(url_for('user_profile.html', user_id=user_id,bmi=res[0],calories=res[1],cr=res[2],fat=res[3],floors=res[4],hr=res[5],period=lis[i],speed=res[7],steps=res[8] )
 
 @app.route('/<feature>')
 def get_counts_for_feature(feature):

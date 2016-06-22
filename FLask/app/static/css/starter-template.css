@@ -2,6 +2,43 @@ body {
   padding-top: 50px;
 }
 .starter-template {
-  padding: 40px 15px;
+  padding: 400px 15px;
   text-align: center;
+}
+.profile-template {
+  padding: 40px 15px;
+  float:left;
+  width:17%;
+  height:1000px;
+  background:#ADD8E6
+}
+.profile_details {
+	float:left;
+	height:228px;
+	width:304px
+}
+.competors {
+	padding: 20px 15px;
+	float:right;
+	background:gray;
+	width:83%;
+	height:1000px;
+	text-align: center;
+}
+.select-competors {
+	width:25%;
+	height:900px
+}
+.feature {
+	height:100px;
+	width:100%;
+}
+.feat_label {
+	float:left;
+	font-size:20px
+}
+
+.form-control {
+	width:50%; 
+	float:right
 }
