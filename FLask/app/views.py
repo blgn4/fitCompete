@@ -27,7 +27,7 @@ def my_form_post():
     rediscon=redis.StrictRedis(host='localhost', port=6379, db=0,password='')
     res= rediscon.lrange(key,0,-1)
     lis=['morning','afternoon','evening']
-    i=int(res[])
+    i=int(res[6])
     return render_template('user_profile.html', user_id=user_id,bmi=res[0],calories=res[1],cr=res[2],fat=res[3],floors=res[4],hr=res[5],period=lis[i],speed=res[7],steps=res[8] )
 
 @app.route('/<feature>')
