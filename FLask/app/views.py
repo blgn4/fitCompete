@@ -22,6 +22,12 @@ def redis_counts(key_pattern):
 def index():
 	return render_template("index.html", title='Fit Compete Profile')
 
+@app.route('/index', methods=['POST'])
+def my_form_post():
+    text = request.form['text']
+    processed_text = text.upper()
+    return processed_text
+
 @app.route('/<feature>')
 def get_counts_for_feature(feature):
 	if feature=='bmi':
