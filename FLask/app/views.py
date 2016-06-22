@@ -26,7 +26,9 @@ def my_form_post():
     key = 'user:'+user_id
     rediscon=redis.StrictRedis(host='localhost', port=6379, db=0,password='')
     res= rediscon.lrange(key,0,-1)
-    return res
+    lis=['morning','afternoon','evening']
+    i=int(res[])
+    return render_template('user_profile.html', user_id=user_id,bmi=res[0],calories=res[1],cr=res[2],fat=res[3],floors=res[4],hr=res[5],period=lis[i],speed=res[7],steps=res[8] )
 
 @app.route('/<feature>')
 def get_counts_for_feature(feature):
