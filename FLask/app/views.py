@@ -22,9 +22,11 @@ def index():
 
 @app.route('/', methods=['POST'])
 def my_form_post():
-    text = request.form['text']
-    processed_text = text.upper()
-    return processed_text
+    user_id = request.form['text']
+    key = 'user:'+user_id
+    rediscon=redis.StrictRedis(host='localhost', port=6379, db=0,password='')
+    res rediscon.lrange(key,0,-1)
+    return res
 
 @app.route('/<feature>')
 def get_counts_for_feature(feature):
