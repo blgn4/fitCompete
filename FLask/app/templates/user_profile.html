@@ -25,16 +25,33 @@
 
     <div class="container">
 
-      <div class="profile">
+      <div class="starter-template">
         <img src="../static/profile_picture.png" style="width:304px;height:228px;">
-      </div>
-      <div>
-         <p> user id : {{user_id}} &nbsp &nbsp bmi: {{bmi}} </p>
-         <p> calories : {{calories}} &nbsp &nbsp calories rate: {{cr}} </p>
-         <p> fat : {{fat}} &nbsp &nbsp floors: {{floors}} </p>
-         <p> heart rate : {{hr}} &nbsp &nbsp period: {{period}} </p>
-         <p> speed : {{speed}} &nbsp &nbsp steps: {{steps}} </p>
-      </div>
+        <table class="table">    
+          <tbody>
+            <tr>
+              <td>user id : {{user_id}}</td>
+              <td>bmi: {{bmi}}</td>
+            </tr>
+            <tr>        
+              <td>calories : {{calories}}</td>
+              <td>calories rate: {{cr}}</td>
+            </tr>
+            <tr>
+              <td>fat : {{fat}}</td>
+              <td>floors: {{floors}}</td>
+            </tr>
+            <tr>
+              <td>heart rate : {{hr}}</td>
+              <td>period: {{period}}</td>
+            </tr>
+            <tr>
+              <td>speed : {{speed}}</td>
+              <td>steps: {{steps}}</td>
+            </tr>
+          </tbody>
+        </table>
+       </div>
 
     </div><!-- /.container -->
 
