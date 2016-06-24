@@ -5,7 +5,7 @@ from time import sleep
 import sys
 import datetime
 
-producer = KafkaProducer(bootstrap_servers='localhost:9092')
+producer = KafkaProducer(bootstrap_servers=["52.41.140.111:9092","52.41.90.5:9092","52.41.120.152:9092"])
 
 def generate_ex_profile(usr,date):
 	now=datetime.datetime.now()-datetime.timedelta(hours=7)

@@ -11,10 +11,119 @@
     <title>Fit Compete</title>
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/css/starter-template.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    
+    <script type="text/javascript">
+       $(function() {
+      $('a#find_users').bind('click', function() {
+        $.getJSON('/_obtain_users', {
+          user_id:$('#user_id').val(),
+          bmi: $('#Bmi').val(),
+          cal: $('#Calories').val(),
+          cr: $('#CR').val(),
+          fat: $('#Fat').val(),
+          floors: $('#Floors').val(),
+          hr: $('#HR').val(),
+          period: $('#Period').val(),
+          speed: $('#Speed').val(),
+          steps: $('#Steps').val()
+        }, function(data) {
+          var buttongroups=''
+          /*if(data.result =='No users match') buttongroups='No match found'
+          else  
+          {*/
+          for (var i=0;i<data.result.length;i++)
+          {
+            console.log(data.result[i])
+            buttongroups+='<a href="javascript:void(0);" class="list-group-item" >'+data.result[i]+'</a>'
+          }
+          //}
+          $(".user_list").html(buttongroups)
+        });
+        return false;
+      });
+      });
+    </script> 
+     <script type="text/javascript" src="../static/js/competetion.js"> </script>
+    <script type=text/javascript>
+      $(function() {
+        console.log({{bmi}})
+          if ({{bmi}} <24)
+               $('#Bmi').val('L')
+    else if ({{bmi}}>=24 && {{bmi}}<30)
+      $('#Bmi').val('M')
+    else  $('#Bmi').val('H')
+    
+   
+    if ({{calories}} < 2000)
+      $('#Calories').val('L')
+    else if ({{calories}} >= 2000 && {{calories}} <=2500)
+      $('#Calories').val('M')
+    else
+      $('#Calories').val('H')
+    
+    if ({{cr}} < 8)
+      $('#CR').val('L')
+    else if ({{cr}} >= 8 && {{cr}} <=9)
+      $('#CR').val('M')
+    else
+      $('#CR').val('H')
+
+    
+    if ({{fat}} < 18)
+      $('#Fat').val('L')
+    else if ({{fat}} >= 18 && {{fat}} <=21)
+      $('#Fat').val('M')
+    else
+      $('#Fat').val('H')
+
+    
+    if ({{floors}} < 8)
+      $('#Floors').val('L')
+    else if ({{floors}} >=8 && {{floors}} <= 16)
+      $('#Floors').val('M')
+    else
+      $('#Floors').val('H')
+
+    
+    if ({{hr}} < 107)
+      $('#HR').val('L')
+    else if ({{hr}}>=107 && {{hr}} <= 153)
+      $('#HR').val('M')
+    else
+      $('#HR').val('H')
+
+    
+    if ({{speed}} < 4)
+      $('#Speed').val('L')
+    else if ({{speed}} >=4 && {{speed}} <5)
+      $('#Speed').val('M')
+    else
+      $('#Speed').val('H')
+
+    
+    if ({{steps}} <3000)
+      $('#Steps').val('L')
+    else if ({{steps}} >= 3000 && {{steps}} <= 6000)
+      $('#Steps').val('M')
+    else
+      $('#Steps').val('H')
+
+    
+    if ({{period}}==0)
+      $('#Period').val('M')
+    else if ({{period}}==1)
+      $('#Period').val('A')
+    else if ({{period}}==2)
+      $('#Period').val('E')
+  });
+    </script>
   </head>
 
   <body>
-
+    <input type="hidden" id="user_id" value="{{user_id}}">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -61,7 +170,14 @@
               </tr>
               <tr>
                 <th>period</th>
-                <td>{{period}}</td>
+                <td>{% if period==0 %}
+                    morning
+                    {%elif period == 1 %}
+                    afternoon
+                    {%else %}
+                    evening
+                    {% endif %}
+                </td>
               </tr>
               <tr>
                 <th>speed</th>
@@ -79,12 +195,10 @@
       <div class="competors">
         
         <div class="select-competors">
-          <form action="." method="POST">
           <div class="feature">
             <p class="feat_label">BMI</p>
             <select class="form-control" id="Bmi" >
-              <option>None</option>
-              <option>H</option>
+              <option value="H">H</option>
               <option>M</option>
               <option>L</option>
             </select>
@@ -92,88 +206,93 @@
           <div class="feature">
             <p class="feat_label">Calories</p>
             <select class="form-control" id="Calories" >
-              <option>None</option>
-              <option>H</option>
-              <option>M</option>
-              <option>L</option>
+              <option value="H">H</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
             </select>
           </div>
           <div class="feature">
             <p class="feat_label">Calories_rate</p>
             <select class="form-control" id="CR" >
-              <option>None</option>
-              <option>H</option>
-              <option>M</option>
-              <option>L</option>
+              <option value="H">H</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
             </select>
           </div>
           <div class="feature">
             <p class="feat_label">Fat</p>
             <select class="form-control" id="Fat" >
-              <option>None</option>
-              <option>H</option>
-              <option>M</option>
-              <option>L</option>
+              <option value="H">H</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
             </select>
           </div>
           <div class="feature">
             <p class="feat_label">Floors</p>
             <select class="form-control" id="Floors" >
-              <option>None</option>
-              <option>H</option>
-              <option>M</option>
-              <option>L</option>
+              <option value="H">H</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
             </select>
           </div>
           <div class="feature">
             <p class="feat_label">Heart Rate</p>
             <select class="form-control" id="HR" >
-              <option>None</option>
-              <option>H</option>
-              <option>M</option>
-              <option>L</option>
+              <option value="H">H</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
             </select>
           </div>
           <div class="feature">
             <p class="feat_label">Period</p>
             <select class="form-control" id="Period" >
-              <option>None</option>
-              <option>H</option>
-              <option>M</option>
-              <option>L</option>
+              <option value="M">M</option>
+              <option value="A">A</option>
+              <option value="E">E</option>
             </select>
           </div>
           <div class="feature">
             <p class="feat_label">Speed</p>
             <select class="form-control" id="Speed" >
-              <option>None</option>
-              <option>H</option>
-              <option>M</option>
-              <option>L</option>
+              <option value="H">H</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
             </select>
           </div>
           <div class="feature">
             <p class="feat_label">Steps</p>
             <select class="form-control" id="Steps" >
-              <option>None</option>
-              <option>H</option>
-              <option>M</option>
-              <option>L</option>
+              <option value="H">H</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
             </select>
           </div>
-          <input type="submit" class="btn btn-info" id="profile-match" value="Submit Button">
-        </form>
+          <a href="javascript:void(0);" class="btn btn-info" id="find_users" role="button">Find Users</a>
         </div>
         
+        <div class="ulist" >
+          
+          <div class="user_list"> </div>
+
+          <div class="competetion" id="comp"> 
+              <a href="javascript:void(0);" class="btn btn-info" id="gen_stream" role="button">Go</a>  
+          </div>
+           
+        </div>
+
+        </div>
+
       </div>
 
     </div><!-- /.container -->
-
+    <script type=text/javascript>
+        val=$('#Bmi').val()
+        console.log(val)
+    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
+    
   </body>
 </html>

@@ -1,14 +1,15 @@
 from app import app
 import redis
-import jsonify
-from flask import render_template, redirect, request,url_for
+from flask import jsonify
+from flask import render_template
+from flask import request
 
 
 
 
 def redis_counts(key_pattern):
 	leng=0
-	rediscon=redis.StrictRedis(host='localhost', port=6379, db=0,password='')
+	rediscon=redis.StrictRedis(host='localhost', port=6379, db=0,password='anilkunchamlakshmigayatriniharika')
 	keys=rediscon.keys(pattern=key_pattern)
 	for key in keys:
 		leng+=rediscon.llen(key)
@@ -21,14 +22,36 @@ def index():
 
 @app.route('/user_profile', methods=['POST'])
 def my_form_post():
-	if request.method = 'POST':
-	    user_id = request.form['text']
-	    key = 'user:'+user_id
-	    rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
-	    res= rediscon.lrange(key,0,-1)
-	    lis=['morning','afternoon','evening']
-	    i=int(res[6])
-	    return redirect(url_for('user_profile.html', user_id=user_id,bmi=res[0],calories=res[1],cr=res[2],fat=res[3],floors=res[4],hr=res[5],period=lis[i],speed=res[7],steps=res[8] )
+    user_id = request.form['text']
+    key = 'user:'+user_id
+    rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='anilkunchamlakshmigayatriniharika')
+    res= rediscon.lrange(key,0,-1)
+    return render_template('user_profile.html', user_id=user_id,bmi=res[0],calories=res[1],cr=res[2],fat=res[3],floors=res[4],hr=res[5],period=res[6],speed=res[7],steps=res[8] )
+
+@app.route('/_obtain_users')
+def obtain_users():
+	user_id=request.args.get('user_id')
+	bmi = request.args.get('bmi')
+	cal= request.args.get('cal')
+	cr = request.args.get('cr')
+	fat = request.args.get('fat')
+  	floors = request.args.get('floors')
+  	hr = request.args.get('hr')
+  	period = request.args.get('period')
+  	speed = request.args.get('speed')
+  	steps = request.args.get('steps')
+  	key = bmi+cal+cr+fat+floors+hr+speed+steps+period
+  	print key
+  	rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='anilkunchamlakshmigayatriniharika')
+  	user_list=rediscon.lrange(key,0,500)
+  	print user_list
+  	res=user_list	
+  	# if len(user_list) == 0: #or (len(user_list) == 1 and user_list[0]==user_id):
+  	# 	res='No users match'
+  	# else:
+  	# 	res=user_list
+  	return jsonify(result=res)
+
 
 @app.route('/<feature>')
 def get_counts_for_feature(feature):

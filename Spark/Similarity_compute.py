@@ -41,7 +41,7 @@ def get_data_from_influx():
 		fat=int(val[3])
 		if fat < 18:
 			str1+='L'
-		elif fat >= 18 and calories_rate <=21:
+		elif fat >= 18 and fat <=21:
 			str1+='M'
 		else:
 			str1+='H'
