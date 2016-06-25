@@ -7,7 +7,7 @@ $(function() {
 function start_stream() {
     $('#comp').html('')
 setInterval(function(){ get_data();}, 300);
-)
+}
 
 function get_data(){
         $.getJSON('/_start_competetion', {
@@ -25,7 +25,7 @@ function get_data(){
           render_graph(data.result)
         });
         return false;
-      });
+      };
 
 
 function render_graph(data) {
