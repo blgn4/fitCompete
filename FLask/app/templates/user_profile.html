@@ -15,7 +15,20 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="//d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
+       <script type="text/javascript" src="../static/js/competetion.js"> </script> 
+    <script type="text/javascript">
+        var user_selected
+        function get_name(btnObj)
+        {
+          add_elem = '<br/> <h2><a href="javascript:void(0);" class="btn btn-info" id="gen_stream" role="button" onclick="start_stream()">Go</a></h2>'
+          $('.Start_comp').html(add_elem)
+          user_selected=btnObj.value
+          console.log(user_selected)
+        }
+     </script>
+
+  
+
     <script type="text/javascript">
        $(function() {
       $('a#find_users').bind('click', function() {
@@ -32,16 +45,13 @@
           steps: $('#Steps').val()
         }, function(data) {
           var buttongroups='<h2><span class="label label-info">Similar User List</span></h2></br></br>'
-          /*if(data.result =='No users match') buttongroups='No match found'
-          else  
-          {*/
-          for (var i=0;i<data.result.length;i++)
-          {
-            console.log(data.result[i])
-            buttongroups+='<button type="button" class="list-group-item"> <Strong> USer ID: </Strong>'+data.result[i]+'</button>'
-          }
-          
-          //}
+            buttongroups+='<div class = "btn-group-vertical">'
+            for (var i=0;i<data.result.length;i++)
+            {
+              console.log(data.result[i])
+              buttongroups+='<button type="button" class="btn btn-default" style= "font-size:20px" onclick="get_name(this)" value="'+data.result[i]+'"> <Strong> USer ID: </Strong>'+data.result[i]+'</button>'
+            }
+          buttongroups+='</div>'
           $(".user_list").html(buttongroups)
 
         });
@@ -50,7 +60,7 @@
       });
     </script> 
    
-    <script type="text/javascript" src="../static/js/competetion.js"> </script> 
+    
     <script type=text/javascript>
       $(function() {
         console.log({{bmi}})
@@ -280,8 +290,8 @@
         <div class="user_list">
 				<h2><span class="label label-info"> Similar User List </span></h2>
 		  </div>
-      <div class="Start_comp">
-          <br/> <h2><a href="javascript:void(0);" class="btn btn-info" id="gen_stream" role="button">Go</a></h2>
+		<div class="Start_comp">
+          
        </div>
     </div>
     <div class="competetion" id="comp"> 

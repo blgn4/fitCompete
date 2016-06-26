@@ -5,13 +5,6 @@ from flask import render_template
 from flask import request
 
 
-def redis_counts(key_pattern):
-	leng=0
-	rediscon=redis.StrictRedis(host='localhost', port=6379, db=0,password='')
-	keys=rediscon.keys(pattern=key_pattern)
-	for key in keys:
-		leng+=rediscon.llen(key)
-	return leng
 
 
 @app.route('/')
