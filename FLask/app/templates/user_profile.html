@@ -46,7 +46,7 @@
       });
       });
     </script> 
-     <script type="text/javascript" src="../static/js/competetion.js"> </script>
+    <!-- <script type="text/javascript" src="../static/js/competetion.js"> </script> -->
     <script type=text/javascript>
       $(function() {
         console.log({{bmi}})
@@ -276,6 +276,20 @@
 
           <div class="competetion" id="comp"> 
               <a href="javascript:void(0);" class="btn btn-info" id="gen_stream" role="button">Go</a>  
+              <script type=text/javascript>
+                    $(function() {
+            $('a#gen_stream').bind('click', function() {
+            $.getJSON('/_start_competetion',  function(data) {
+      
+                for (var i=0;i<data.result.length;i++)
+                {
+                  console.log(data.result[i])
+                }
+            });
+            return false;
+            });
+            });   
+              </script>
           </div>
            
         </div>

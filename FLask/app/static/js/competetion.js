@@ -10,22 +10,29 @@ setInterval(function(){ get_data();}, 300);
 }
 
 function get_data(){
-        $.getJSON('/_start_competetion', {
-          user_id:$('#user_id').val(),
-          bmi: $('#Bmi').val(),
-          cal: $('#Calories').val(),
-          cr: $('#CR').val(),
-          fat: $('#Fat').val(),
-          floors: $('#Floors').val(),
-          hr: $('#HR').val(),
-          period: $('#Period').val(),
-          speed: $('#Speed').val(),
-          steps: $('#Steps').val()
-        }, function(data) {
-          render_graph(data.result)
+        $.getJSON("/_start_competetion", function(data) {
+          //render_graph(data.result)
+          for (var i =0 ; i< data.result; i++)
+          {
+            console.log(data.result[i])
+          }
         });
-        return false;
+        
       };
+
+function xyc(){
+$.getJSON( "ajax/test.json", function( data ) {
+  var items = [];
+  $.each( data, function( key, val ) {
+    items.push( "<li id='" + key + "'>" + val + "</li>" );
+  });
+ 
+  $( "<ul/>", {
+    "class": "my-new-list",
+    html: items.join( "" )
+  }).appendTo( "body" );
+});
+};
 
 
 function render_graph(data) {
