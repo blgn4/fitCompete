@@ -1,67 +1,104 @@
 body {
   padding-top: 50px;
+  background:gray;
 }
 .starter-template {
-  padding: 400px 15px;
+  padding: 300px 15px;
   text-align: center;
 }
 .profile-template {
   padding: 40px 15px;
   float:left;
-  width:17%;
-  height:1000px;
+  width:15%;
+  /*1000px;*/
+  height: 100%;   
   background:#ADD8E6
 }
 .profile_details {
 	float:left;
-	height:228px;
-	width:304px
+	/*height:228px;
+	width:304px*/
+	height:100%;
+	width:100%;
 }
 .competors {
-	padding: 10px 15px;
 	float:right;
-	background:gray;
-	width:83%;
-	height:950px;
+	width:85%;
+	/*height:950px;*/
+	height:100%;
 	text-align: center;
 }
 .select-competors {
+	padding: 5px 15px;
 	width:15%;
-	height:950px;
+	/*height:950px;*/
+	height:100%;
 	float:left
 }
 .feature {
-	height:100px;
+	height:70px;
 	width:100%;
 
 }
 .feat_label {
 	float:left;
-	font-size:20px
+	font-size:20px;
+	width:50%;
 }
 
 .form-control {
-	width:100px; 
+	width:50%; 
 	float:right;
-	size:2;
 }
 .ulist {
-	width:80%;
-	height:950px;
+	width:85%;
+	height:100%;
 	float:right;
-	background:white;
 	position:relative;
 }
-.user_list {
+.user_comp {
 	float:left;
-	width:10%;
-	height:950px;
+	width:20%;
+	height:100%;
+	background: black
+}
+.user_list {
+	width:100%;
+	height:600px;
+	text-align:center;
+	overflow-y:auto;
+}
+.Start_comp {
+	width:100%;
+	height:10%;
 }
 .competetion {
 	float:right;
-	width:90%;
+	width:80%;
 	height:950px;
+	padding: 10px 15px;
 }
+#gen_stream {
+	position:center;
+	width:40%;
+	height:10%;
+	font-size: 20px;
+	background:green;
+}
+
+.box1 {
+	width:100%; 
+	height:50%; 
+	border-style: outset;
+}
+
+.box2 {
+	width:100%; 
+	height:50%; 
+	border-style: outset;
+}
+
+
 .bar {
   fill: steelblue;
 }
@@ -75,6 +112,7 @@ body {
 }
 
 .axis path,
+
 .axis line {
   fill: none;
   stroke: #000;

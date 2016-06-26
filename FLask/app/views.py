@@ -5,9 +5,6 @@ from flask import render_template
 from flask import request
 
 
-
-
-
 def redis_counts(key_pattern):
 	leng=0
 	rediscon=redis.StrictRedis(host='localhost', port=6379, db=0,password='')
@@ -28,15 +25,6 @@ def my_form_post():
     rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
     res= rediscon.lrange(key,0,-1)
     return render_template('user_profile.html', user_id=user_id,bmi=res[0],calories=res[1],cr=res[2],fat=res[3],floors=res[4],hr=res[5],period=res[6],speed=res[7],steps=res[8] )
-
-@app.route('/_start_competetion',methods=['POST'])
-def stream_post():
-	#stream_generator()
-	rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
-	res=rediscon.lpop('stream')
-	print res
-	return jsonify(result=res)
-
 
 @app.route('/_obtain_users')
 def obtain_users():
@@ -61,6 +49,17 @@ def obtain_users():
   	# else:
   	# 	res=user_list
   	return jsonify(result=res)
+
+@app.route('/_start_competetion')
+def stream_gen():
+	rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
+	res1=rediscon.blpop('stream',timeout=60)
+	res2=rediscon.blpop('stream',timeout=60)
+	res=[]
+	res.append(res1)
+	res.append(res2)
+	print res
+	return jsonify(result=res)
 
 
 @app.route('/<feature>')

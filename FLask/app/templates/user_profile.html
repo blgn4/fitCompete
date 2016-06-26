@@ -14,6 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="//d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
     <script type="text/javascript">
        $(function() {
@@ -30,23 +31,26 @@
           speed: $('#Speed').val(),
           steps: $('#Steps').val()
         }, function(data) {
-          var buttongroups=''
+          var buttongroups='<h2><span class="label label-info">Similar User List</span></h2></br></br>'
           /*if(data.result =='No users match') buttongroups='No match found'
           else  
           {*/
           for (var i=0;i<data.result.length;i++)
           {
             console.log(data.result[i])
-            buttongroups+='<a href="javascript:void(0);" class="list-group-item" >'+data.result[i]+'</a>'
+            buttongroups+='<button type="button" class="list-group-item"> <Strong> USer ID: </Strong>'+data.result[i]+'</button>'
           }
+          
           //}
           $(".user_list").html(buttongroups)
+
         });
         return false;
       });
       });
     </script> 
-    <!-- <script type="text/javascript" src="../static/js/competetion.js"> </script> -->
+   
+    <script type="text/javascript" src="../static/js/competetion.js"> </script> 
     <script type=text/javascript>
       $(function() {
         console.log({{bmi}})
@@ -136,7 +140,9 @@
 
       <div class="profile-template">
         
-        <img src="../static/profile_picture.png" style="width:304px;height:228px;">
+        <img src="../static/profile_picture.png" style="width:95%;height:228px; margin-left:auto;margin-right:auto">
+		</br></br>
+		</br>
         <div class="profile_details">
           <table class="table ">    
             <tbody>
@@ -212,7 +218,7 @@
             </select>
           </div>
           <div class="feature">
-            <p class="feat_label">Calories_rate</p>
+            <p class="feat_label">Cal_rate</p>
             <select class="form-control" id="CR" >
               <option value="H">H</option>
               <option value="M">M</option>
@@ -269,35 +275,25 @@
           </div>
           <a href="javascript:void(0);" class="btn btn-info" id="find_users" role="button">Find Users</a>
         </div>
-        
-        <div class="ulist" >
-          
-          <div class="user_list"> </div>
-
-          <div class="competetion" id="comp"> 
-              <a href="javascript:void(0);" class="btn btn-info" id="gen_stream" role="button">Go</a>  
-              <script type=text/javascript>
-                    $(function() {
-            $('a#gen_stream').bind('click', function() {
-            $.getJSON('/_start_competetion',  function(data) {
-      
-                for (var i=0;i<data.result.length;i++)
-                {
-                  console.log(data.result[i])
-                }
-            });
-            return false;
-            });
-            });   
-              </script>
-          </div>
+         <div class="ulist" >
+        <div class="user_comp">
+        <div class="user_list">
+				<h2><span class="label label-info"> Similar User List </span></h2>
+		  </div>
+      <div class="Start_comp">
+          <br/> <h2><a href="javascript:void(0);" class="btn btn-info" id="gen_stream" role="button">Go</a></h2>
+       </div>
+    </div>
+    <div class="competetion" id="comp"> 
+                   <div class="box1" id="b1"> </div>
+                   <div class="box2" id="b2"> </div>  
+    </div>
            
-        </div>
+    </div>
 
-        </div>
+    </div>
 
-      </div>
-
+     
     </div><!-- /.container -->
     <script type=text/javascript>
         val=$('#Bmi').val()
