@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer
 from influxdb import InfluxDBClient
-
+#all kafka brokers are added
 consumer = KafkaConsumer('user_timeseries',bootstrap_servers=["52.41.140.111:9092","52.41.90.5:9092","52.41.120.152:9092"])
 
 for msg in consumer:
