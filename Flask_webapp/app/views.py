@@ -3,9 +3,10 @@ import redis
 from flask import jsonify
 from flask import render_template
 from flask import request
+from multiprocessing import Process
 from kafka_producer import stream_generator
 
-
+active = True
 
 @app.route('/')
 def index():
@@ -43,10 +44,16 @@ def obtain_users():
   	# 	res=user_list
   	return jsonify(result=res)
 
-@app.route('/_start_competetion')
-def stream_gen():
+@app.route('/_start_stream')
+def stream_prod():
 	rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
-	kafka_producer.stream_generator()
+	rediscon.set('active',1)
+	return jsonify(result=1)
+
+@app.route('/_get_stats')
+def stream_gen():
+	global active
+	rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
 	res1=rediscon.blpop('stream',timeout=60)
 	res2=rediscon.blpop('stream',timeout=60)
 	res=[]

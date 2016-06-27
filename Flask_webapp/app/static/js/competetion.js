@@ -1,10 +1,13 @@
 function start_stream() {
 	$('.competetion').show();
+   $.getJSON("/_start_stream",function(data){
+      console.log('started streaming')
+  });
 	setInterval(function(){ get_data();}, 1000);
 }
 
 function get_data(){
-  $.getJSON("/_start_competetion", function(data) {
+  $.getJSON("/_get_stats", function(data) {
     console.log(user_selected)
     //render_graph(data.result)
     var str1 = data.result[0][1]
