@@ -31,8 +31,12 @@ for val in series:
 	key='user:'+user_id
 	redis_client.delete(*key)
 	pipe.lpush(key,*data2)
+	if count == 10000:
+		pipe.execute()
+		count=0
+		pipe=redis_client.pipeline()
 	count +=1
-	pipe.execute()
+pipe.execute()
 
 
 print("---aggregates calculated in %s seconds ---" % (time.time() - start_time))
