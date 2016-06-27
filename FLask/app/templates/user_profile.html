@@ -25,12 +25,10 @@
           user_selected=btnObj.value
           console.log(user_selected)
         }
-     </script>
 
-  
-
-    <script type="text/javascript">
        $(function() {
+	   $('.user_comp').hide();
+	   $('.competetion').hide();
       $('a#find_users').bind('click', function() {
         $.getJSON('/_obtain_users', {
           user_id:$('#user_id').val(),
@@ -52,88 +50,86 @@
               buttongroups+='<button type="button" class="btn btn-default" style= "font-size:20px" onclick="get_name(this)" value="'+data.result[i]+'"> <Strong> USer ID: </Strong>'+data.result[i]+'</button>'
             }
           buttongroups+='</div>'
+		  $('.user_comp').show();
           $(".user_list").html(buttongroups)
-
+			
         });
         return false;
       });
       });
-    </script> 
-   
-    
-    <script type=text/javascript>
+
       $(function() {
         console.log({{bmi}})
           if ({{bmi}} <24)
                $('#Bmi').val('L')
-    else if ({{bmi}}>=24 && {{bmi}}<30)
-      $('#Bmi').val('M')
-    else  $('#Bmi').val('H')
+			else if ({{bmi}}>=24 && {{bmi}}<30)
+			  $('#Bmi').val('M')
+			else  $('#Bmi').val('H')
     
    
-    if ({{calories}} < 2000)
-      $('#Calories').val('L')
-    else if ({{calories}} >= 2000 && {{calories}} <=2500)
-      $('#Calories').val('M')
-    else
-      $('#Calories').val('H')
-    
-    if ({{cr}} < 8)
-      $('#CR').val('L')
-    else if ({{cr}} >= 8 && {{cr}} <=9)
-      $('#CR').val('M')
-    else
-      $('#CR').val('H')
+			if ({{calories}} < 2000)
+			  $('#Calories').val('L')
+			else if ({{calories}} >= 2000 && {{calories}} <=2500)
+			  $('#Calories').val('M')
+			else
+			  $('#Calories').val('H')
+			
+			if ({{cr}} < 8)
+			  $('#CR').val('L')
+			else if ({{cr}} >= 8 && {{cr}} <=9)
+			  $('#CR').val('M')
+			else
+			  $('#CR').val('H')
 
-    
-    if ({{fat}} < 18)
-      $('#Fat').val('L')
-    else if ({{fat}} >= 18 && {{fat}} <=21)
-      $('#Fat').val('M')
-    else
-      $('#Fat').val('H')
+			
+			if ({{fat}} < 18)
+			  $('#Fat').val('L')
+			else if ({{fat}} >= 18 && {{fat}} <=21)
+			  $('#Fat').val('M')
+			else
+			  $('#Fat').val('H')
 
-    
-    if ({{floors}} < 8)
-      $('#Floors').val('L')
-    else if ({{floors}} >=8 && {{floors}} <= 16)
-      $('#Floors').val('M')
-    else
-      $('#Floors').val('H')
+			
+			if ({{floors}} < 8)
+			  $('#Floors').val('L')
+			else if ({{floors}} >=8 && {{floors}} <= 16)
+			  $('#Floors').val('M')
+			else
+			  $('#Floors').val('H')
 
-    
-    if ({{hr}} < 107)
-      $('#HR').val('L')
-    else if ({{hr}}>=107 && {{hr}} <= 153)
-      $('#HR').val('M')
-    else
-      $('#HR').val('H')
+			
+			if ({{hr}} < 107)
+			  $('#HR').val('L')
+			else if ({{hr}}>=107 && {{hr}} <= 153)
+			  $('#HR').val('M')
+			else
+			  $('#HR').val('H')
 
-    
-    if ({{speed}} < 4)
-      $('#Speed').val('L')
-    else if ({{speed}} >=4 && {{speed}} <5)
-      $('#Speed').val('M')
-    else
-      $('#Speed').val('H')
+			
+			if ({{speed}} < 4)
+			  $('#Speed').val('L')
+			else if ({{speed}} >=4 && {{speed}} <5)
+			  $('#Speed').val('M')
+			else
+			  $('#Speed').val('H')
 
-    
-    if ({{steps}} <3000)
-      $('#Steps').val('L')
-    else if ({{steps}} >= 3000 && {{steps}} <= 6000)
-      $('#Steps').val('M')
-    else
-      $('#Steps').val('H')
+			
+			if ({{steps}} <3000)
+			  $('#Steps').val('L')
+			else if ({{steps}} >= 3000 && {{steps}} <= 6000)
+			  $('#Steps').val('M')
+			else
+			  $('#Steps').val('H')
 
-    
-    if ({{period}}==0)
-      $('#Period').val('M')
-    else if ({{period}}==1)
-      $('#Period').val('A')
-    else if ({{period}}==2)
-      $('#Period').val('E')
+			
+			if ({{period}}==0)
+			  $('#Period').val('M')
+			else if ({{period}}==1)
+			  $('#Period').val('A')
+			else if ({{period}}==2)
+			  $('#Period').val('E')
   });
-    </script>
+  </script>
   </head>
 
   <body>
@@ -305,10 +301,7 @@
 
      
     </div><!-- /.container -->
-    <script type=text/javascript>
-        val=$('#Bmi').val()
-        console.log(val)
-    </script>
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

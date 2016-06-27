@@ -1,5 +1,6 @@
 function start_stream() {
-  setInterval(function(){ get_data();}, 1000);
+	$('.competetion').show();
+	setInterval(function(){ get_data();}, 1000);
 }
 
 function get_data(){

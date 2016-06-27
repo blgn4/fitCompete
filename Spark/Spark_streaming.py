@@ -28,7 +28,7 @@ def computations(s):
     
     distance= (st_sum_ * 2.5) + 1
 
-    if distance == 0:
+    if distance == 0 or distance == 1:
     	pace =0
     else:
     	pace= ((3 / distance) * 88.23)
@@ -36,7 +36,7 @@ def computations(s):
     return (s[0],(round(hr_avg_,2), round(pace,2) ))
 
 def save_to_redis(s):
-	rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='anilkunchamlakshmigayatriniharika')
+	rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
 	pipe = rediscon.pipeline()
 	for i in s:
 		key='stream'
