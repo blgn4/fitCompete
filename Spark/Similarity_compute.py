@@ -7,6 +7,8 @@ redis_client = redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazona
 redis_client.delete('*L*')
 redis_client.delete('*H*')
 redis_client.delete('*M*')
+redis_client.delete('*A*')
+redis_client.delete('*E*')
 
 def get_data_from_influx():
 	str2=[]
