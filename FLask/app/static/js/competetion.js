@@ -1,5 +1,4 @@
 function start_stream() {
-  alert("Started!");
   setInterval(function(){ get_data();}, 1000);
 }
 
@@ -44,4 +43,3 @@ function render_table2(data)
   table2+='</tbody> </table>'
   $('.box2').html(table2)
 }
-

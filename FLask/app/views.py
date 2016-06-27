@@ -3,7 +3,7 @@ import redis
 from flask import jsonify
 from flask import render_template
 from flask import request
-
+from kafka_producer import stream_generator
 
 
 
@@ -46,6 +46,7 @@ def obtain_users():
 @app.route('/_start_competetion')
 def stream_gen():
 	rediscon=redis.StrictRedis(host='ec2-52-40-47-83.us-west-2.compute.amazonaws.com', port=6379, db=0,password='')
+	kafka_producer.stream_generator()
 	res1=rediscon.blpop('stream',timeout=60)
 	res2=rediscon.blpop('stream',timeout=60)
 	res=[]

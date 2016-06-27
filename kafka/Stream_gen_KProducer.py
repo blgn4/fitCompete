@@ -13,7 +13,7 @@ def generate_ex_profile(usr,date):
 	speed=random.randrange(2,6)
 	cal_out_rate=random.randrange(6,10)
 	data1=str(now)+","+str(usr)+","+str(hr)+","+str(speed)+","+str(cal_out_rate)+","+date
-	producer.send('influx_topic',data1)
+	producer.send('user_timeseries',data1)
 	print str(usr)
 
 while (1):
