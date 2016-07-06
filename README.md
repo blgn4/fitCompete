@@ -26,9 +26,9 @@ Also, when a user selects another user to compete with from the UI, a stream is 
 
 ## Demo
 
-Website [fitcompete.club] (http://www.fitcompete.club:5000)
+The website can be accessed at [fitcompete.club] (http://www.fitcompete.club:5000)
 
-Presentation [Fit Compete] (http://www.slideshare.net/NiharikaBollapragada)
+The presentation for the project is available at [Fit Compete] (http://www.slideshare.net/NiharikaBollapragada). Also, a video of the demo is available on [YouTube] (https://www.youtube.com/watch?v=EASS6tvQCEs)
 
 
 
