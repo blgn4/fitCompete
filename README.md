@@ -20,7 +20,7 @@ are considered to be similar.
 
 ##Pipeline
 
-![Alt text](/pipeline.jpg?raw=true)
+![Alt text](/pipeline.JPG?raw=true)
 
 
 
