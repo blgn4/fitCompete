@@ -26,7 +26,7 @@ Also, when a user selects another user to compete with from the UI, a stream is 
 
 ## Demo
 
-Website [fitcompete.club] (www.fitcompete.club:5000)
+Website [fitcompete.club] (http://www.fitcompete.club:5000)
 
 Presentation [Fit Compete] (http://www.slideshare.net/NiharikaBollapragada)
 
