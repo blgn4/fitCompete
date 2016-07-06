@@ -4,8 +4,8 @@
 
 [FitCompete] (www.fitcompete.club:5000) is an application which suggests similar users based on profile match. The main goal of the project is to 
 find similar users in linear time complexity rather than using quadratic time complexity by comparing all possible pairs.
-One solution for this is using hashing techniques. The existing hashing techniques like miin-hashing and LSH work well for discerete 
-features. My current problem has only 9 features with continuous values in certain ranges for which the above hashing techniques don't
+One solution for this is using hashing techniques. The existing hashing techniques like min-hashing and LSH work well for discerete 
+features. My current problem has 9 features with continuous values for which the above hashing techniques don't
 work well. I have implemented an algorithm which discretizes these feature based on their values into Low (L), Medium (M) and High (H) ranges 
 by providing L or M or H tag for each feature. Thus, every user is tagged with a 9 letter string. All the users with similar tags 
 are considered to be similar.
