@@ -10,6 +10,8 @@ work well. I have implemented an algorithm which discretizes these feature based
 by providing L or M or H tag for each feature. Thus, every user is tagged with a 9 letter string. All the users with similar tags 
 are considered to be similar.
 
+Also, when a user selects another user to compete with from the UI, a stream is generated for the two users with 1000 data points per second. This stream is processed in spark streaming to compute the average heart-rate and pace over a 3-seconds window. The average heart-rate is computed for a 3sec window in-order to smoothen the variations in the randomly generated values and the pace is computed by considering the total steps taken for the past 3 seconds and by considering a step to be approximately equal to 2.5 feet.   
+
 
 ##Technologies Used
 
@@ -21,6 +23,12 @@ are considered to be similar.
 ##Pipeline
 
 ![Alt text](/pipeline.JPG?raw=true)
+
+## Demo
+
+Website [fitcompete.club] (www.fitcompete.club:5000)
+
+Presentation [Fit Compete] (http://www.slideshare.net/NiharikaBollapragada)
 
 
 
